@@ -1,0 +1,132 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+	<meta name="Author" content="David Augenbllick">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Assignment">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../../courseInfo.js"></script>
+	<script language="JavaScript" src="../../../Scripts/courseFormat.js"></script>
+  <title>CS 265 -- Assignment, Baseball Stats</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1>Assignment - Reporting Baseball Player Statistics</h1>
+
+<h2> Introduction </h2>
+
+<p> Perhaps in no other sport does statistics play as major a role as in the
+game of Baseball. In fact, certain numbers, such as 56 (length of Joe
+DiMaggio's hitting streak), 73 (Barry Bonds' single season home run record)
+and 755 (Hank Aaron's career home run record) are part of American sports
+culture. </p>
+
+<p> The purpose of this assignment is for students to become familiar with
+writing simple Python scripts, to use built-in containers (data
+structures), and to develop a "user friendly" interface utilizing Python's
+input / output capabilities. </p>
+
+<p> You will write a Python program that reads in Baseball statistics for
+players on various teams from a CSV (comma separated value) file and display
+statistical information for a specified player.  You will allow the user to
+find a player and display his statistics. </p>
+
+
+<h2>The interface</h2>
+
+<p>The interface will be via the terminal (stdin, stdout).  The user
+interface will have 3 stages:</p>
+
+<ol>
+	<li> List, in alphabetical order, all teams represented within the file.
+	</li>
+	<li> Allow the user to choose (menu style) a team, and then display all
+	players for that team </li>
+	<li> Allow the user to choose (menu style) a player and then display the
+	full set of statistics for that player </li>
+</ol>
+
+<p> You will, after some input (you decide), bring the user back to the main
+(team list) menu, which will also have a "quit" option. </p>
+
+<p> When you list out the teams or players, enumerate them, so that the user
+can choose by entering a number; don't make the user type out text (team or
+player names), etc. </p>
+
+<h2>Input</h2>
+
+<p> Player statistics input are provided in <a target='_blank'
+	href='sample.in'>sample.in</a> </p>
+
+<p> The following fields are included for each record, as follows: </p>
+
+<ol>
+	<li> player's last name </li>
+	<li> player's first name </li>
+	<li> player's team </li>
+	<li> player's position </li>
+	<li> number of at bats </li>
+	<li> number of base hits </li>
+	<li> number of doubles </li>
+	<li> number of triples </li>
+	<li> number of home runs </li>
+	<li> number of runs batted in (RBI) </li>
+	<li> batting average (3 decimal places, no leading zero </li>
+</ol>
+
+<p> Note that all fields within a record are separated by commas, and that
+no field actually contains a comma. </p>
+
+<p> Please review some of the Python examples from week 4 which demonstrate
+how to retrieve files (either entire file or line by line) into Python.
+Also, these examples demonstrate how to parse the line items into individual
+fields. </p>
+
+
+<h2> Notes, the data structures </h2>
+
+<p> You will want to keep the keys (for both team and player lists) in a
+sorted list for displaying a menu (easy access). For storing statistical
+details, associating them with a player, associating players with teams,
+please think about how you would store this. Nice tables will drive a lot of
+the rest of your code. </p>
+
+<p> You will probably choose to utilize some combination of Python's list
+and dictionary types (list of dictionaries, dictionaries of lists, ....)
+</p>
+
+<p> You may parse the input file only once, so you need to store the
+information for easy retrieval. </p>
+
+
+
+<hr>
+<h2> What to hand in </h2>
+
+<p>Submit the following files via <tt>submit_cli</tt> or <tt>submit_cli</tt>.
+The assignment id is <tt><b>a2</b></tt> (small a).</p>
+
+<ul>
+	<li><tt><b>getPlayerStatistics.py</b></tt> - Your complete Python
+	program</li>
+	<li><tt><b>README</b></tt> <i>(optional)</i> - anything you want/need to
+	tell us</li>
+</ul>
+
+<p>Please note, use the filenames <b>as shown here</b>.  I.e.,
+<tt>README.txt</tt> will <i>not</i> be read before grading, and
+<tt>get_player_statistics.py</tt> will not be graded.</p>
+
+</body>
+</html>

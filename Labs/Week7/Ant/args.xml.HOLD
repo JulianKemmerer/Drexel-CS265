@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Feb '06
+
+	Mandrake Linux 10.2
+	Ant
+
+	This isn't bad.  Need to thank the people at:
+		http://blog.ideoplex.com/software/java/ (thanks, guys)
+
+	DEMONSTRATES: tag, project, description, target, javac, java, classpath,
+		arg, delete, fileset
+-->
+
+<project>
+	<description>
+		Compile, and make a jarfile.  Optionally, run it.
+		Please note, that "running" the jarfile requires a properly written
+			manifest file (here, man.mf)
+	</description>
+
+  <target name="run1" depends='compile'>
+		<echo message="Arguments a 'b c' d listed individually:\n"/>
+    <java classname='args' fork='true'>
+			<classpath path='./'/>
+			<arg value='a'/>
+			<arg value='b c'/>
+			<arg value='d'/>
+		</java>
+  </target>
+
+  <target name="run2" depends='compile'>
+		<echo message="Arguments a 'b c' d on a single line:\n"/>
+    <java classname='args' fork='true'>
+			<classpath path='./'/>
+			<arg line='a "b c" d'/>
+		</java>
+  </target>
+
+  <target name="run3" depends='compile'>
+		<echo message="Single arg, as a path (../../index.html):\n"/>
+    <java classname='args' fork='true'>
+			<classpath path='./'/>
+			<arg path='../../index.html'/>
+		</java>
+  </target>
+
+  <target name="compile">
+    <javac srcdir='./' includes='args.java'/>
+  </target>
+
+  <target name="clean">
+    <delete>
+			<fileset dir="./">
+				<include name='args.class'/>
+			</fileset>
+		</delete>
+  </target>
+</project>

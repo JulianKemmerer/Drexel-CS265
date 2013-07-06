@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo python myscript "$1" "$ACCT_LIST"
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Feb '06
+
+	Mandrake Linux 10.2
+	Ant
+
+	This, BTW, is my first Ant file.  Entirely ripped off
+		http://blog.ideoplex.com/software/java/ (thanks, guys)
+-->
+
+<project default="hello">
+	<description>
+		A simple project, a couple targets, and just 'echo' tasks.
+		Note that this description is optional.
+	</description>
+
+  <target name="hello">
+    <echo message="Hello, World"/>
+  </target>
+
+  <target name="bye">
+    <echo message="Goodbye, Cruel World"/>
+  </target>
+
+  <target name="all" depends="hello,bye">
+		<echo message="Done!"/>
+	</target>
+</project>
+

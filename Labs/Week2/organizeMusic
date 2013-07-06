@@ -1,0 +1,18 @@
+#!/bin/bash
+
+for song in *.mp3; do
+dashIndex=$(expr index "$song" "-");
+songName=${song:$dashIndex};
+songName=${songName#" "};
+artistName=${song:0:$dashIndex};
+artistName=${artistName%" -"};
+fullPath="$artistName""/""$songName";
+echo "$fullPath";
+if [ ! -d "$artistName" ]
+	then
+		mkdir "$artistName"
+fi
+
+mv "$song" "$fullPath";
+done
+

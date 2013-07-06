@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Feb '06
+
+	Mandrake Linux 10.2
+	Ant
+
+	Reasonable, I think.  Motivated by
+		http://blog.ideoplex.com/software/java/ (thanks, guys)
+	
+	DEMONSTRATES: tag, project, description, target, javac, java, classpath,
+		arg, delete, fileset
+-->
+
+<project default="run" basedir=''>
+	<description>
+		Okay, now we compile *and* run
+	</description>
+
+	<target name="run" depends='foo,bar'/>
+
+  <target name="foo" depends='compile'>
+		<java classname='foo'>
+			<classpath path='./'/>
+			<arg value='an arg'/>
+			<arg line='2 args'/>
+			<arg path='../../index.html'/>
+		</java>
+  </target>
+
+  <target name="bar" depends='compile'>
+		<java classname='bar'>
+			<classpath path='./'/>
+		</java>
+  </target>
+
+  <target name="compile">
+    <javac srcdir='./'/>
+  </target>
+
+  <target name="clean">
+    <delete>
+			<fileset dir="./">
+				<include name='*.class'/>
+			</fileset>
+		</delete>
+  </target>
+</project>

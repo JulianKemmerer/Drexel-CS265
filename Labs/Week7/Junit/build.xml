@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Aug '06
+
+	Mandrake Linux 10.2
+	Ant
+
+	DEMONSTRATES  javac java junit classpath reference
+-->
+
+<project default='test' basedir='.'>
+	<description>
+		'An example that uses JUnit to test as we build.  Also demonstrates
+		references'
+	</description>
+
+	<path id="project.class.path">
+			<!-- get your current classpath -->
+		<pathelement path='${CLASSPATH}'/>
+			<!-- add location of junit.jar -->
+		<pathelement location='/usr/share/java/junit4.jar'/>
+		<pathelement location='.'/>
+	</path>
+
+  <target name="run" depends='compile'>
+    <java classname='Money'/>
+		<!--<java classname='MoneyTest'/>-->
+  </target>
+
+	<target name="compile" depends='Money'/>
+
+  <target name="Money">
+    <javac srcdir='./' includes='Money.java'/>
+		<!-- Not sure <javac srcdir='./'/> -->
+  </target>
+
+  <target name="MoneyTest">
+    <javac srcdir='./' includes='MoneyTest.java'>
+			<classpath refid="project.class.path"/>
+		</javac>
+  </target>
+
+	<target name='test' depends='compile,MoneyTest'>
+		<junit>
+			<classpath refid="project.class.path"/>
+
+			<formatter type='plain'/>
+			<test name='MoneyTest'/>
+		</junit>
+	</target>
+
+  <target name="clean">
+    <delete>
+			<fileset dir="./">
+				<include name='*.class'/>
+				<include name='TEST*.txt'/>
+			</fileset>
+		</delete>
+  </target>
+</project>
+

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!-- 
+	Kurt Schmidt
+	Nov '06
+-->
+
+<project default='compile' basedir='.'>
+
+  <target name='compile' depends='pokerSuit,pokerClient'/>
+	
+  <target name='pokerClient' depends='pokerSuit'>
+    <javac srcdir='./' includes='pokerClient.java'/>
+  </target>
+
+  <target name='pokerSuit'>
+    <javac srcdir='./' includes='pokerSuit.java'/>
+  </target>
+
+	<target name='doc'>
+		<kurt
+				destdir='docs/'
+				author='yes'
+				use='true'
+				windowtitle='Enum example - Poker Suit' >
+			<fileset dir='.' defaultexcludes='yes'>
+				<include name='pokerSuit.java'/>
+			</fileset>
+		</kurt>
+	</target>
+
+  <target name='clean'>
+    <delete>
+			<fileset dir='./'>
+				<include name='*.class'/>
+			</fileset>
+		</delete>
+  </target>
+</project>

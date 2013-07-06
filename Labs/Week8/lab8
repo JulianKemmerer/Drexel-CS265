@@ -1,0 +1,36 @@
+Q1:
+1. Hide implementation details: The user of your implimentation should not be concerned with or aware of exactly way your class functions - only that it does correctly.
+2. Choose a small orthogonal set of primitives: Do not have functions/methods etc. that perform the same task in multiple ways.
+3. Don't reach behind the user's back: Do not make changes other than exactly what is stated in your implementations documentation.
+4. Do the same thing the same way everywhere: Use the same formatting everywhere (ex. function argument order) so that the user is not confused with changing formats
+
+Q2:
+Cannot have more than 199 chars in a line
+Cannot have more than 20 fields in a line
+
+Q3:
+Size of line is not limited
+Number of fields not limited
+Addtional functionality added regarding checking for end of line
+Created function for splitting line into fields
+Added method to obtain field and number of fields
+Support for multiple field seperators
+
+Q4:
+Cannot parse two csv files at once because only one instance of the required variables exist. (Ex. only one line variable exists, so parsing multiple lines with one variable wouldn't make sense).
+Cannot read from stdin.
+No other problems are immediately apparent when comparing the first revision to the original. 
+
+Q5:
+Allows reading from stdin.
+Applicable function calls return more reasonable values, integer indices rather than pointers to positions
+No problems are immediately apparent when comparing the C++ version to the C version
+
+Q6:
+1. Hide implementation details: Yes, the user does not need to know much if any of the implimentation details to use the class.
+2. Choose a small orthogonal set of primitives: Yes, mutiple functions performing the same operations do not exist.
+3. Don't reach behind the user's back: Yes, changes are not made to without the changes being obvious (Ex. passing by reference).
+4. Do the same thing the same way everywhere: Yes (there are not enough functions to really have a standard way of doing things)
+
+
+

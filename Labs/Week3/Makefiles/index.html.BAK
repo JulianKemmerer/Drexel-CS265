@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+	<meta name="Author" content="Kurt Schmidt & Vera Zaychik">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Revisit-After" content="90 days">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../courseInfo.js"></script>
+	<script language="JavaScript" src="../Scripts/courseFormat.js"></script>
+	<title>Lab - Make</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../images/blueTexture.jpeg">
+
+
+<h1>Lab - Makefiles</h1>
+
+
+<h2>Make Utility</h2>
+
+<ul>
+	<li> Copy lab.tgz from ~kschmidt/public_html/CS265/571/Labs/Makefiles to
+		your lab directory. Unzip and untar it. You should find a
+		multi-directory project structure.
+
+		<p> <b><font size=+1>Q 1</font></b>: Create one makefile per directory
+		and one overall makefile residing in the top directory to compile
+		everything (it should use the other makefiles, NOT copy and paste rules
+		from them). </p>
+
+		<p> Tar/gzip the makefile in the current directory, as well as the 2
+		subdirectories, to a file called <tt><b>make_lab.tgz</b></tt>.  Submit
+		this with your other lab files. </p>
+
+	</li>
+</ul>
+
+
+</body></html>

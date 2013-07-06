@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+	<meta name="Author" content="Vera Zaychik & Kurt Schmidt">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../courseInfo.js"></script>
+	<script language="JavaScript" src="../Scripts/courseFormat.js"></script>
+	<title>Lab - Performance</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../images/blueTexture.jpeg">
+
+<h1>Lab - Performance</h1>
+
+<font size='+2' color='#990000'><b>TODO:  Make more, fatter, data
+		points</b></font>
+
+<p>Okay, just follow along, questions will be denoted with a
+<b><font size="=1">Q</font></b>. </p>
+
+<ul>
+	<li>Make some appropriate subdirectory for this lab and go there</li>
+	<li>Copy ~kschmidt/public_html/CS265/Labs/Performance to your lab
+		directory</li>
+</ul>
+
+<h3>Resources</h3>
+
+<ul>
+	<li><a target='265res' href=
+		'http://www.cs.drexel.edu/~kschmidt/Lectures/Complexity/big-o.pdf'>
+		big-o.pdf</a> and
+		<a target='265res' href=
+		'http://www.cs.drexel.edu/~kschmidt/Lectures/Complexity/big-o.ppt'>
+		big-o.ppt</a> - a quick lecture on Big-O (a upper bound, not necessarily
+		tight)</li>
+	<li><a target='265res' href=
+		'http://www.cs.drexel.edu/~kschmidt/Lectures/Complexity/recurrenceRelations-substitution.pdf'>
+		recurrenceRelations-substitution.pdf</a> and
+		<a target='265res' href=
+		'http://www.cs.drexel.edu/~kschmidt/Lectures/Complexity/recurrenceRelations-substitution.ppt'>
+		recurrenceRelations-substitution.ppt</a> - solving recurrence relations</li>
+	<li><a target='265res' href=
+		'http://www.cs.drexel.edu/~kschmidt/Lectures/Complexity/findingTheta.html'>
+		findingTheta.html</a> - an example of dividing T(n) by f(n) to discover
+		f(n) (using Maple)</li>
+</ul>
+
+<h2>Using the <tt>time</tt> utility</h2>
+
+<p>We're going to use <tt>time</tt> to gather runtime data about our
+quicksort, on strings.</p>
+
+<p>We will sort inputs of 10,000, 20,000, ... , 60,000 words, and graph our
+results.</p>
+
+<p>
+<ul>
+	<li>Compile your sort:</li>
+		<blockquote><tt>gcc -o sort1 sort1.c quicksort.c</tt></blockquote>
+	<li>For <i>each</i> input file, <tt>ins.<i>n</i>0000</tt>, get the time
+		to execute:</li>
+		<blockquote><tt>time sort1 &lt; <i>file</i> &gt; /dev/null</tt>
+		</blockquote>
+	<p>I would use the reported <tt><b>user</b></tt> time</p>
+	<li>We want to find an Theta equivalence class for T(<i>n</i>), our observed
+	times:</li>
+		<ul>
+			<li>Put your six points (<i>n</i>, T(<i>n</i>)) in a table</li>
+			<li>Graph your six points (use Excel, gnuplot, Maple)</li>
+			<li>Did the graph tend towards a (non-zero) constant?</li>
+		</ul>
+	<li>We wish to find f(<i>n</i>), such that T(<i>n</i>) = &#920;(
+		f(<i>n</i>) )</li>
+		<ul>
+			<li>Guess at f(<i>n</i>).  E.g., start at f(<i>n</i>) = <i>n</i></li>
+			<li>Add a column to you table, T(<i>n</i>)/f(<i>n</i>)</li>
+			<li>graph T(<i>n</i>)/f(<i>n</i>) vs <i>n</i></li>
+			<li>Does function approach a non-zero constant?</li>
+		</ul>
+	<li>If the graph tends toward zero, then f(<i>n</i>) is an upper bound,
+	but not tight.  T(<i>n</i> = &#959;( f(<i>n</i>) )</li>
+	<li>If the graph heads off to infinity, then f(<i>n</i>) is a lower bound, but
+		not tight.  T(<i>n</i> = &#969;( f(<i>n</i>) )</li>
+	<li>Zero in on f(<i>n</i>)</li>
+</ul>
+
+<p>E.g.:</p>
+
+<table width='400' border='1' cellpadding='0'>
+	<tr>
+		<th rowspan='2'><i>n</i></th>
+		<th rowspan='2'>T(<i>n</i>)</th>
+		<th colspan='3'>T(<i>n</i>) / f(<i>n</i>)</th>
+	</tr>
+	<tr>
+		<th>f(<i>n</i>) = <i>n</i></th>
+		<th>f(<i>n</i>)=<i>n</i><sup>3</sup></th>
+		<th>f(<i>n</i>)=<i>n</i><sup>2</sup></th>
+	</tr>
+	<tr>
+		<th>10</th>
+		<td><center>520</center></td>
+		<td><center>52</center></td>
+		<td><center>0.520000</center></td>
+		<td><center>5.2</center></td>
+	</tr>
+	<tr>
+		<th>20</th>
+		<td><center>2080</center></td>
+		<td><center>104</center></td>
+		<td><center>0.260000</center></td>
+		<td><center>5.2</center></td>
+	</tr>
+	<tr>
+		<th>30</th>
+		<td><center>4680</center></td>
+		<td><center>156</center></td>
+		<td><center>0.173333</center></td>
+		<td><center>5.2</center></td>
+	</tr>
+	<tr>
+		<th>40</th>
+		<td><center>8320</center></td>
+		<td><center>208</center></td>
+		<td><center>0.130000</center></td>
+		<td><center>5.2</center></td>
+	</tr>
+	<tr>
+		<th>50</th>
+		<td><center>13000</center></td>
+		<td><center>260</center></td>
+		<td><center>0.104000</center></td>
+		<td><center>5.2</center></td>
+	</tr>
+	<tr>
+		<th>60</th>
+		<td><center>18720</center></td>
+		<td><center>312</center></td>
+		<td><center>0.086667</center></td>
+		<td><center>5.2</center></td>
+	</tr>
+</table>
+
+<p>Clearly T(<i>n</i>) is increasing.  So, it is bound below (but not
+tightly) by a constant.  We say T(<i>n</i>) = &#969;( 1 ).</p>
+
+<blockquote><b>Note:</b>  Big-O is an upper bound, which may or may not be
+	tight.  Little-O is a <i>loose</i> upper bound, which is <u>not</u> tight.
+	Similarly, Big-Omega is a lower bound, which may or may not be tight, and
+	little-omega, &#969;, is a <i>loose</i> lower bound, <u>not</u> tight.
+</blockquote>
+
+<p>When we divide T(<i>n</i>) by f(<i>n</i>) = <i>n</i>, we see these values
+still increasing to &#8734;.  So, T(<i>n</i>) is bound below by a line, but
+not tightly.  We say T(<i>n</i>) = &#969;( <i>n</i> ).  In other words,
+T(<i>n</i>) grows faster than a line.</p>
+
+<p>So, we choose f(<i>n</i>) = <i>n</i><sup>3</sup>, and we see that
+T(<i>n</i>)/<i>n</i><sup>3</sup> is probably decreasing to zero (we need to
+look around a bit more to be sure).  This means that <i>n</i><sup>3</sup> is
+an <i>upper</i> bound, but not tight.  I.e., T(<i>n</i>) grows more slowly
+than <i>n</i><sup>3</sup>.  T(<i>n</i>) = &#959;( <i>n</i><sup>3</sup>
+).</p>
+
+<p>We now choose f(<i>n</i>) = <i>n</i><sup>2</sup>.  Well, I should've made
+this example a little more interesting.  We can surmise that T(<i>n</i>) is,
+in fact, 5.2 <i>n</i><sup>2</sup>.  The important point is that
+<nobr>T(<i>n</i>) / <i>n</i><sup>2</sup></nobr> is tending towards some
+non-zero constant.  So, T(<i>n</i>) = &#920;( <i>n</i><sup>2</sup> ).
+
+<p><b><font size="+1">Q 1</font></b> Supply your chart (that is just tabular
+data, <i>n</i>, T(<i>n</i>), T(<i>n</i>)/f(<i>n</i>) for various choices of
+f(<i>n</i>)), <i>not</i> a graph, and your conclusions</p>
+
+<h3>C's <tt>clock</tt> command</h3>
+
+<p>C has a <tt>clock</tt> command in its library.  Other languages have
+similar ideas.  See <a target='265lab' href='Performance/sortr.c'>
+	sortr.c</a> for an example.</p>
+
+<p>It gives us a little better granularity, about what we're timing (we can
+skip overhead, etc.).  Essentially, there is a clock that starts at 0 when
+your program starts, and should only tick while your program is executing
+(as opposed to being sliced out).  Each call to <tt>clock()</tt> just grabs
+that time.  So, you grab a start and end time, take the difference.</p>
+
+<p><tt>clock()</tt> returns the # of tics, which is system-dependent, both
+the value and the granularity.  Diving by <tt>CLOCKS_PER_SEC</tt> will give
+you the time, in seconds.  But, for graphing/evalution purposes, tics is
+fine.  Don't divide away significant digits.</p>
+
+
+<h2>Using a bit of the <tt>gprof</tt> utility</h2>
+
+<p>For another approach at the same problem, we're going to count the # of
+swaps performed, rather than measure raw time.</p>
+
+<p>We'll sill be working w/the same set of inputs: 10,000, 20,000, ... ,
+60,000 words, and graph our results.</p>
+
+<p>
+<ul>
+	<li>Compile your sort for gprof to use:</li>
+		<blockquote><tt>gcc -pg -o sort1 sort1.c quicksort.c</tt></blockquote>
+	<li>For <i>each</i> input file, <tt>in.<i>n</i>0000</tt>, get the number
+		of swaps:
+		<ul>
+			<li>Run the program:</li>
+				<blockquote><tt>sort1 &lt; <i>file</i> &gt; /dev/null</tt>
+				</blockquote>
+			<li>Notice the file in your directory, <tt>gmon.out</tt></li>
+			<li>Run <tt>gprof</tt> on this data:</li>
+				<blockquote><tt>gprof sort1 gmon.out</tt></blockquote>
+			<li>The report is in a file called <tt><b>gprof.out</b></tt>.  There
+				is a description of the data in the report</li>
+			<li>Find the # of times <tt>swap()</tt> was called</li>
+		</ul>
+	<li>You have 6 data points.  Play the same game as above.  Find
+	f(<i>n</i>)</li>
+</ul>
+
+<p><b><font size="+1">Q 2</font></b> Supply your chart (just the tabular
+data, no graphs), and your conclusions</p>
+
+</body>
+
+</html>

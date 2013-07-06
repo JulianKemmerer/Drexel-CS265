@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta name="Author" content="Kurt Schmidt">
+	<script language="JavaScript" src="../Scripts/courseFormat.js"></script>
+  <title>CS265 - Lab 10</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/blueTexture.jpeg">
+
+<font size="+2">
+
+<h1>Lab 10 - Java II<\h1>
+<hr>
+
+<p>Useful links:
+
+<ul>
+	<a target='265' href='http://www.javasoft.com'>www.javasoft.com</a><br>
+	<dd>Click on API, then 1.4 or 1.5</dd><br>
+	<a target='265' href='http://www.javaranch.com'>www.javaranch.com</a><br>
+</ul>
+
+<p>Get ~kschmidt/CS265/Labs/10/lab.tgz
+<p>Look over the java programs
+<br><br>
+
+<table>
+	<tr><td colspan='2'><font size='+1'>Arguments</font></td></tr>
+	<tr>
+		<td><font size='+1'><tt>byRef.java</tt></font></td>
+		<td><font size='+1'>Explores passing by reference</font></td>
+	<tr>
+		<td><font size='+1'><tt>byVal.java</tt></font></td>
+		<td><font size='+1'>Explores passing by value</font></td>
+	</tr>
+	<tr><td colspan='2'><font size='+1'>Arrays</font></td></tr>
+	<tr>
+		<td><font size='+1'><tt>Arr.java</tt></font></td>
+		<td><font size='+1'>demonstrates using primitive arrays</font></td>
+	</tr>
+	<tr><td colspan='2'><font size='+1'>Enum</font></td></tr>
+	<tr>
+		<td><font size='+1'><tt>pokerSuit.java</tt></font></td>
+		<td><font size='+1'>example of enum</font></td>
+	</tr>
+	<tr>
+		<td><font size='+1'><tt>pokerClient.java</tt></font></td>
+		<td><font size='+1'>Driver for pokerSuit</font></td>
+	</tr>
+	<tr><td colspan='2'><font size='+1'>Inheritance</font></td></tr>
+	<tr>
+		<td><font size='+1'><tt>vehicle.java</tt></font></td>
+		<td><font size='+1'>base class</font></td>
+	<tr>
+		<td><font size='+1'><tt>bike.java</tt></font></td>
+		<td><font size='+1'>Derived from vehicle</font></td>
+	</tr>
+	<tr><td colspan='2'><font size='+1'>Interfaces</font></td></tr>
+	<tr>
+		<td><font size='+1'><tt>internalCombustion.java</tt></font></td>
+		<td><font size='+1'>Interface</font></td>
+	<tr>
+		<td><font size='+1'><tt>motorcycle.java</tt></font></td>
+		<td><font size='+1'>extends bike, implements internal Combustion</font></td>
+	</tr>
+	<tr><td colspan='2'><font size='+1'>File Input</font></td></tr>
+	<tr>
+		<td><font size='+1'><tt>tokenInput.java</tt></font></td>
+		<td><font size='+1'>just reading tokens from stdin</font></td>
+	<tr>
+		<td><font size='+1'><tt>fileTokInp.java</tt></font></td>
+		<td><font size='+1'>Reads files line/token at a time</font></td>
+	</tr>
+</table>
+
+<hr>
+<h2>To be submitted:</h2>
+
+<p>Write a Java program to emulate a simple <tt>sort</tt> utility.
+
+<p>Start off by just having it sort on the whole line (1<sup>st</sup> token),
+using lexical order.  Feel free to use Java's sorts.
+
+<p>The file will be named on the command line
+
+<p>Send output to <tt>stdout</tt>
+
+<p>Call the file <tt>fSort.java</tt>
+
+<p>You'll probably want to look at <tt>ArrayList</tt> or <tt>Vector</tt>
+
+<p>If that's too easy, we'll add flags for numerical sorts, other fields, etc.
+
+<p>Submit to WebCT.
+
+
+</body>
+
+</html>

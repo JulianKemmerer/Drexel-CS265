@@ -1,0 +1,188 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+  <meta name="Author" content="Jeremy R. Johnson">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../courseInfo.js"></script>
+	<script language="JavaScript" src="../Scripts/courseFormat.js"></script>
+  <title>CS 265-- Assignment 2</title>
+</head>
+
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1>Assignment 2</h1>
+
+<h2> Introduction </h2>
+
+<p> The purpose of this assignment is for students to become familiar with
+compiling, running, and testing programs in the Unix environment, using
+library routines, and the concept of generic programming. &nbsp;Students
+will be introduced to a few of the languages of the course, C, C++, and
+Python, and will have a chance to review a fundamental algorithm, namely
+quicksort.  &nbsp;Most of the coding for the assignment will simply involve
+writing main programs and either using library routines or code from class.
+See <a href="../Lectures/4.html">Lecture 4</a> for relevent material and
+code. </p>
+
+<p> The assignment involves sorting strings. &nbsp;A main program will be
+written that reads strings, one per line, from standard input, and writes
+the same strings, in sorted order, to standard output. &nbsp;This interface
+is the same as the Unix <tt><b>sort</b></tt> filter, except that only one
+string per line is allowed and the options that <tt><b>sort</b></tt>
+supports are not included. </p>
+
+<p> Sorting is a very common operation and is widely supported through
+standard library routines for different languages. &nbsp;Rather than
+reinventing the wheel, when sorting is required it is a good idea to use a
+library routine.  &nbsp;A good library routine must provide a good interface
+(see chapter 4 of the text) and should support many different situations
+(i.e. different types of elements that are to be sorted). &nbsp;Algorithms
+that support different data types are called generic and programming to
+support generic algorithms is called generic programming. &nbsp;Different
+languages have different types of support for generic programming (e.g.
+<nobr><tt>void*</tt></nobr> and function pointers in C, templates and
+virtual methods in C++, interfaces and the Object class in Java). &nbsp;As
+part of this assignment you will investigate support for generic programming
+in different languages. &nbsp;While it is generally not a good idea to
+implement your own sorting routine, it is good to be aware of the algorithms
+that are available, be able to read code implementing the algorithm, and to
+be aware of the behavior and runtime of important algorithms (this will be
+pursued later in the assignment on performance). </p>
+
+<h2> Problems </h2>
+
+<p> For each problem, you are to write a separate main program. &nbsp;All
+main programs should follow the same interface as indicated in the
+introduction. </p>
+
+
+<ol>
+	<li>Write and test a main program in C, that reads strings (one per line)
+		from standard input and writes the same strings in sorted order to
+		standard out, one string per line. &nbsp;Use an array of pointers to
+		character arrays to store the strings.  I.e., you have a
+		statically-allocated array of pointers, <tt><nobr>char *[LINE_CAP] =
+			0;</nobr></tt> (you may assume you won't have more than 100,000
+		lines to parse, see below).  You will then use <tt>malloc</tt> or
+		<tt>strdup</tt> to get memory for each line, as needed.  There are
+		examples in your book.  <strong>Don't forget to give the memory back,
+		using <tt>free</tt> (not <tt>delete</tt>).</strong> </p>
+
+		<p> You should use the quicksort code from class to sort the strings.
+		&nbsp;This code was modified to sort an array of character arrays (see
+		<a target='_blank'
+			href='../Programs/C/qsort_string.c'><tt>qsort_string.c</tt></a>).
+		&nbsp;See the lecture notes on C for how to read/write strings. </p>
+	</li>
+
+	<li>Redo question 1 using the C library routine <tt>qsort</tt> (you will
+	need to supply a <tt>compare()</tt> function).</li>
+
+	<li>Redo question 1 in C++, modifying the provided quicksort code, to use
+		a template.  Use a <tt>vector</tt> of <tt>string</tt>s to store the
+		strings:
+
+		<blockquote><tt>template &lt;class S&gt;<br />
+			void myQSort( vector&lt;S&gt; &amp;v );</tt></blockquote>
+	
+		<p> You may assume (require that) the <tt><b>&lt;</b></tt> operator
+		is defined for type <tt>S</tt>. </p></li>
+
+	<li>Redo question 3 using the C++ <tt>sort</tt> routine, found in the
+	<tt>&lt;algorithm&gt;</tt> header file.</li>
+
+	<li>Write and test a program in Python that reads strings (one per
+	line) from standard input and writes the same strings in sorted order to
+	standard output.<br>
+	See the lecture notes on Python for how to read/write strings.</li>
+
+</ol>
+
+<hr>
+<h2> Description of input </h2>
+
+<p> You may expect no more than 1,000,000 lines of input.  You may further
+assume that each line has no more than 80 characters (careful here).
+Finally, strings (lines) will have no whitespace. </p>
+
+<p> This is like certain examples we've seen already.  Treat <tt>stdin</tt>
+as a file, read until EOF, don't prompt, etc.  (If you want to get fancy,
+test for a TTY, that's on you.) </p>
+
+<hr>
+<h2> Description of output </h2>
+
+<p> You will output the sorted list of strings, one per line, to stdout. </p>
+
+<hr>
+<h2> What to hand in </h2>
+
+
+
+<!--
+<p> Create some appropriate directory for this assignment.  It will contain a
+file called <tt>README</tt> that describes all of the files, and summarizes
+what you did. Make sure to indicate if any of the problems were not done or
+are not working. </p>
+
+<p> For each problem, create a subdirectory called <tt>prob<i>i</i></tt>,
+where <tt><i>i</i></tt> is the problem number. &nbsp;In each directory
+create a file called <tt>main.<i>ext</i></tt>, where <tt><i>ext</i></tt> is
+the appropriate extension for the language being used (<tt>c</tt>,
+<tt>cc</tt>, <tt>py</tt>), with your main program.  You may use more than 1
+file for each program, as you see fit.  Put a brief comment in each main
+program file indicating the author, what the program does, the date and
+platform info, and how to use the program.  &nbsp;In each directory also
+create a makefile that builds the executable and runs it (this is trivial
+for the Python program). </p>
+
+<p> Each makefile will have a <tt>run</tt> target.  I will supply my own
+input, so, don't do this in the makefile.  <a target='265sample'
+	href='makefile'>Here is a sample for problem 1</a>.  <b>Note</b>: please
+do not copy and paste this file; rather, download it using your browser, or
+copy it from my directory.  The command line that follows each target must
+start with a tab character (at least, it did back in the day). </p>
+
+<p> Please also supply a <tt>clean</tt> target that removes object files and
+executable binaries (for the compiled languages). </p>
+
+<p> Optionally, for your own benefit, you might consider a <tt>test</tt>
+target.  <a target='CS265'
+	href='http://www.cs.drexel.edu/~kschmidt/Ref/make.html'>See here</a> for
+more information on makefiles. </p>
+-->
+
+<p> Make sure you test each program. &nbsp;Include the file containing sample
+strings that you used to test your program.  It will be in the parent
+directory, and called <tt>testInput</tt> . </p>
+
+<!--
+<p> From within your assignment directory, the parent of the
+<tt>prob<i>i</i></tt> directories, tar/gzip the contents to a file called
+		<tt><b>a2.tgz</b></tt>: </p>
+
+<blockquote><tt>
+ $ tar -zcvf a2.tgz *
+</tt></blockquote>
+
+<p> to create the desired gzipped tar file. &nbsp;See 
+<tt>man tar</tt> or <tt>info tar</tt> for more information about tar. </p>
+
+<p> Submit your tarfile to WebCT. </p>
+-->
+
+</body>
+</html>

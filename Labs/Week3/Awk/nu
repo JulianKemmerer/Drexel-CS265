@@ -1,0 +1,10 @@
+#!/bin/bash
+# nu - # of users logged in
+#
+# Kurt Schmidt
+# 1/05
+#
+# Uses wc to get a linecount from who
+#
+
+who | wc -l

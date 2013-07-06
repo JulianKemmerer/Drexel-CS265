@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Feb '06
+
+	Mandrake Linux 10.2
+	Ant
+
+	Mostly ripped off
+		http://blog.ideoplex.com/software/java/ (thanks, guys)
+-->
+
+<project default="compile">
+	<description>
+		Compiles 2 files (all files) in current directory
+		Added a "clean" target - uses a fileset to remove all *.class files
+	</description>
+
+  <target name="compile">
+    <javac srcdir='./'/>
+  </target>
+
+  <target name="clean">
+    <delete>
+			<fileset dir="./">
+				<include name='*.class'/>
+			</fileset>
+		</delete>
+  </target>
+</project>

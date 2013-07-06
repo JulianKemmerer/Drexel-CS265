@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Aug '06
+
+	Mandrake Linux 10.2
+	Ant
+-->
+
+<project default='test'>
+	<description>
+		'An example that uses JUnit to test as we build'
+	</description>
+
+  <target name="run" depends='compile'>
+    <java classname='Money'/>
+		<!--<java classname='MoneyTest'/>-->
+  </target>
+
+	<target name="compile" depends='Money'/>
+
+  <target name="Money">
+    <javac srcdir='./' includes='Money.java'/>
+  </target>
+
+  <target name="MoneyTest">
+    <javac srcdir='./' includes='MoneyTest.java'/>
+  </target>
+
+	<target name='test' depends='compile,MoneyTest'>
+		<junit>
+			<classpath>
+					<!-- get your current classpath -->
+				<pathelement path='${CLASSPATH}'/>
+					<!-- add location of junit.jar -->
+				<pathelement location='/usr/share/junit/lib/junit.jar'/>
+			</classpath>
+
+			<formatter type='plain'/>
+			<test name='MoneyTest'/>
+		</junit>
+	</target>
+
+  <target name="clean">
+    <delete>
+			<fileset dir="./">
+				<include name='*.class'/>
+				<include name='TEST*.txt'/>
+			</fileset>
+		</delete>
+  </target>
+</project>

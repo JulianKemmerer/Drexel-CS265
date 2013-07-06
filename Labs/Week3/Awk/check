@@ -1,0 +1,23 @@
+
+if [ -z "$1" ] ; then
+	echo "Need a dir. to archive"
+	exit 1
+fi
+
+out=daily_backup.tgz
+
+if [ -n "$2" ] ; then
+	out="$2"
+fi
+
+tmp=$(mktemp)
+
+2="archive.tgz"
+
+ls "$1" | while read f ; do
+	if [ ! -d "$f" ] ; then
+		echo $f >> $tmp
+	fi
+done
+
+tar czf "$2" -T$tmp

@@ -1,0 +1,167 @@
+                          Anagram Problem
+
+In this writeup it is shown how the UNIX philosophy of combining simple
+programs using pipes can solve an interesting problem.  The problem is
+to find all anagrams in a file containing words.  The UNIX tools that will
+be used are:  (1) a small C program that uses system calls to do string 
+operations and sorting, (2) the UNIX sort command, (3) a small AWK program,
+and finally the UNIX tail command.
+
+                  Problem Statement and Solution
+
+Two words are anagrams if one can be obtained from the other by permuting
+the letters.  For example, the words stop and pots are anagrams since the
+letters "s", "t", "o", and "p" in stop can be rearranged to obtain the word
+pots.
+
+A naive way to test if two words are anagrams is to produce all permutations
+of the letters of one of the words and compare each possible permuted
+sequence of letters to the other word.  If any sequence is equal to the other
+word then they are anagrams.  For example, to determine if "ant" and "tan"
+are anagrams, we first generate the six possible permutations of the letters
+in ant:
+
+ant
+atn
+nat
+nta
+tan
+tna
+
+and compare each to tan.  Since the 5th permuted sequence is equal to tan,
+ant and tan are anagrams.
+
+The problem with this approach is that as the number of letters increases,
+the number of permuted sequences gets very big.  For example, there are
+3,628,800 permutations of a 10 letter word.
+
+A better approach to test if two words are anagrams is to sort the letters
+in each word and then compare the sorted words.  If the words are anagrams
+then they must have the same letters and if they have the same letters
+then they are anagrams.  Therefore this test determines if two words are
+anagrams with one comparison.  For example, if we sort the letters in 
+stop and pots, we obtain the letter sequence opts for both words, which shows
+that they are anagrams.
+
+Given a file containing a list words we want to find all of the anagrams.
+We will do this by dividing the words into anagram classes.  An anagram
+class containing a particular word is the collection of words in the
+input list that are anagrams of the given word.  Note that if two words
+are anagrams to a given word then they are anagrams to each other.  Thus
+any two words in an anagram class are anagrams.  Moreover, all of the
+words in the input file that are anagrams to any of the words in the anagram
+class are contained in the anagram class.
+
+A naive way to find all of the anagram classes is for each word to
+search through all of the other words and check each to see if it
+is an anagram.  This approach is very time consuming.  A better approach
+would be to:
+
+1)  For each word in the file sort the letters to produce a key.
+2)  Sort all of the words in the input file by their key.
+3)  In the sorted list find all adjacent words with the same key (these
+    are the anagram classes).
+
+This will be implemented in UNIX in the following steps:
+
+1)  Use a C program called sign to read the input file and to produce
+an output file where each line contains the key followed by the word.
+This program will read from standard input and write to standard output
+so that we do not have to specify the input file in the program and we
+can use the output in a pipe.  The name of the the executable program
+will be called sign.
+
+2)  The temporary file containing words and keys produced in (1) will be
+sorted using the UNIX sort command.
+
+3)  Use an AWK program to collect all adjacent words with the same key.
+The result will be a file containing an anagram class per line.  The
+file containing the awk program is squash.awk
+
+Here is the UNIX command to do this.  The file /usr/share/dict/words  contains a
+list of 45,425 words.  To verify this use the command wc.
+
+% sign < /usr/share/dict/words | sort | awk -f squash.awk > out
+
+The output will be in the file out.  The awk command can be put into
+a file called squash.  Such a file containing UNIX commands is called
+a shell script and is itself interpred as a command as soon as the
+execute permission has been set.  The resulting UNIX pipe, which uses
+the shell script squash instead of the call to awk, becomes
+
+% sign < /usr/share/dict/words | sort | squash > out
+
+To find the largest anagram classes, we can first count the number of words 
+in each class and then sort the file by these counts.  Here is a UNIX command 
+to do this.
+
+% awk '{ print NF " " $0}' < out | sort -n | tail
+
+In this command the AWK program is given between the single quotes.  The
+UNIX command prints the last 10 lines of a file.  Here it the output
+
+4 glare lager large regal
+4 lament mantel mantle mental
+4 lascar rascal sacral scalar
+4 leap pale peal plea
+4 leapt petal plate pleat
+4 least slate stale steal
+4 mate meat tame team
+4 pare pear rape reap
+4 resin rinse risen siren
+5 caret carte cater crate trace
+
+
+Students should try these commands to see if they can produce the same
+output.  Note that you can view the output of any intermediate stage
+by piping the results through more.  For example.
+
+%  sign < /usr/share/dict/words | more
+
+You can quit more by typing "q" ("man more" for more info on more).
+
+*********************  sign.c  ***************************************
+* Produce the executable file called sign with the command           *
+* gcc sign.c -o sign                                                  *
+**********************************************************************
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define WORDMAX 101
+
+main()
+{
+  char thisword[WORDMAX], sig[WORDMAX];
+  int compchar();
+  while (scanf("%s",thisword) != EOF) {
+     strcpy(sig, thisword);
+     qsort(sig, strlen(sig), sizeof(char), compchar);
+     printf("%s %s\n", sig, thisword);
+  }
+}
+
+int compchar(a,b)
+char *a, *b;
+{
+if (*a < *b) return(-1);
+else if (*a == *b) return(0);
+     else return(1);
+}
+
+
+
+
+*********************  squash.awk  ***************************************
+
+$1 != prev  { prev = $1; if (NR > 1) printf "\n" }
+            { printf "%s ", $2 }
+END         { printf "\n" }
+
+*********************  squash  *******************************************
+
+#!/bin/bash
+# A simple csh shell scrip to execute the awk command with the awk program
+# squash.awk
+
+awk -f squash.awk -

@@ -1,0 +1,113 @@
+Q1:
+The add function is used to add a string prefix and a string suffix to the
+table. This is done by first creating a state object and adding the prefix
+to that state object using the lookup method. Once the state object has been
+populated the addsuffix method is used which takes a state (just created)
+and a suffix (supplied in the original add function)
+
+Q2:
+The functions lookup takes a string prefix and a boolean create value that
+determines if a new state should be created. The function then loops through
+the state table's linked list at at a specific hash until the specified
+entry is found and returns a pointer to it. (Created if not found depends on
+the supplied boolean value)
+
+Q3:
+(null) (null) | It's
+(null) It's   | a
+It's   a      | new
+a      new    | dawn
+new    dawn   | (null)
+
+a. 3
+b. 3
+c. 3
+d. 2
+
+Q4:
+A minimal amount of memory is required to manage what appears to be many
+instances of a string. Low memory usage overall
+
+Q5:
+Make a change to a single entry would be difficult as the string are all
+pointed to from all over and messing up a the location of a stored string
+could be awful. Coding in general for pointers is widely regarded as more
+complicated. The time needed to impliment this code is significantly longer,
+even purely as a function of how much needs to be typed. Memory management
+is an issue.
+
+Q6:
+inline void clean(State* statetab) {
+  free(statetab);
+	//I'm not sure what objects within statetab will be automatically cleaned
+	//up when statetab freed.
+	//It may be neeeded to loop through all of the pointers contained within
+	//statetab and free each of them. I don't know and the instructions said
+	//not to spend alot of time on this
+}
+
+Q7:
+I don't know. I don't know how to check how much memory is being used by a
+specific variable and then compare that to after using free(). The
+difficulties I am having have to do with not know what memory will be
+cleared when statetab is freed. It is likely that since stattab is just a
+collection of pointers that no addtional memory will be freed and it will be
+needed to loop through all referenced memory and free each reference
+individually. (another drawback possibly)
+
+Q8: Follow a single pointer to the string's memory location and free that
+memory. Then store the address of that memory and prior to running free()
+again check to make sure that address is not stored as one that has already
+been freed. (This would become very time consuming). It may be possible
+to navigate through the references in statetab in such a way that you do not
+need to return to pointers that point to an already freed memory locations
+but the answer is not immediately apparent to me.
+
+Q9:
+Prefixes are stored in a deque object. (Taken from
+http://www.cplusplus.com/reference/stl/deque/)
+The elements of a deques can be divided in several chunks of storage, with the class keeping all this information and providing a uniform access to the elements. Therefore,deques are a little more complex internally, but this generally allows them to grow more efficiently than the vectors with their capacity managed
+automatically, specially in large sequences, because massive reallocations
+are avoided.
+
+A deque is used because it can grow more efficiently than a vector object.
+A deque is already double ended which works well for two word prefixes.
+
+Q10:
+A map object serves as the dictionary. The key is a prefix and the value is
+a vector of strings
+
+Q11:
+The list of suffices are stored in a vector of strings
+
+Q12:
+Each value in the map is an individual vector of strings, this allows for
+very easy changes to a specific entry in the dictionary without worrying
+about the consequences to other entries. Coding is a bit simpler without
+having to worry about as many/no pointers. 
+
+Q13:
+C++ in general is slower than C. Since each suffix is stored as its own
+object, more memory will be used.
+
+Q14:
+Key, value pairs are stored in a dictionary/map object.
+Prefixes are stored in a 2-ple (w1,w2) object.
+
+Q15:
+Key,value pairs in a dictionary/map object serve as the hash table
+
+Q16:
+The list of suffices are stored within a list object
+
+Q17:
+The code is much simpler. Probably took less time to impliment than both C
+and C++. Absolutely no pointers or references to worry about. Simple data
+structures allow for easier understanding.
+
+Q18: 
+Python is slower than C++. Since everything is stored as an object, the
+python code will take up more memory.
+
+
+

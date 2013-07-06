@@ -1,0 +1,214 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta name="Author" content="Kurt Schmidt">
+	<script language="JavaScript" src="../../../Scripts/pageFormat.js"></script>
+	<title>CS265 - Rough Outline</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/blueTexture.jpeg">
+
+
+<h1>Week 3</h1>
+
+<h2>Leftover from last week:</h2>
+
+<ul>
+	<li><b><tt>lp</tt></b>, <b><tt>lpstatus</tt></b>, <b><tt>cancel</tt></b>
+	- printing</li>
+	<li><b><tt>unzip</tt></b> - for PC ZIP files (PKWare)</li>
+	<li><b><tt>find</tt></b> - rather powerful find utility</li>
+	<li><b><tt>dc</tt></b> - desktop calculator (postfix)</li>
+	<li><b><tt>diff</tt></b> - compare 2 files (line by line)</li>
+	<li><b><tt>wc</tt></b> - count chars, words, and lines in files</li>
+	<li><b><tt>factor</tt></b> - print prime factors</li>
+	<li><b><tt>ispell</tt></b> - print out misspellings</li>
+</ul>
+
+<h2>a C++ program - <tt>cat</tt></h2>
+
+<h2>Return values from commands</h2>
+
+<p>The special variable <tt><b>$?</b></tt> holds the return value of the
+last executed command.  Unlike C, 0 is true, and all else is false.
+Or you can just test for a value explicitly, and not worry about it.
+
+<blockquote><tt>
+	grep blah someFile &gt; /dev/null 2&gt;&amp;1
+	<br>if [ $? == "0" ] ; then
+	<br>&nbsp;&nbsp;echo "Found a match!"
+	<br>else
+	<br>&nbsp;&nbsp;echo "Didn't find anything."
+	<br>fi
+</tt></blockquote>
+
+<h2>Command substitution</h2>
+
+<p>bash will replace a command surrounded by grave accents '<tt>`</tt>'
+with the output from the command.  E.g.,
+
+<blockquote><tt>
+	cat `ls e*`
+</tt></blockquote>
+
+<p>will print the contents of all files in current directory that start
+with an e.  This would be quicker:  <tt>cat e*</tt>  But 
+
+<blockquote><tt>
+	more `grep -l secret *`	# the -l means "just the filename, not the line"
+</tt></blockquote>
+
+<p>will print, a page at a time, the contents of all files that contains
+a "secret".
+
+<h2>Background Processes</h2>
+
+<ul>
+	<li><tt><b>nohup</b> <i>cmd</i></tt> û insulates <i>cmd</i> from hangup
+		signals</li>
+</ul>
+
+<h2>Scripting</h2>
+
+<p>Refer to <a targ="cs265" href="eg.bash">eg.bash</a> and <a targ="cs265"
+	href="args.bash">args.bash</a> for some helpful examples to concepts
+listed below.  Just type the name of the script to execute it (you 
+may have to preface it with <tt>./</tt> ).
+
+<ul>
+	<li>Scripts run in a subshell
+		<ul>
+			<li>They have access to exported shell variables</li>
+			<li>Changes to variables do <b>not</b> persist when script
+			exits</li>
+			<li>use <b><tt>bash -n <i>scriptName</i></tt></b> to check syntax.
+			(Parse, but don't execute commands.)</li>
+		</ul>
+	</li>
+	<li><b><tt>exit [<i>n</i>]</tt></b> û exits script (or function), returning
+	value of <i>n</i> (0 by default)</li>
+	<li>variables
+		<ul>
+			<li>Variables just hold strings.  Certain elements of the shell will
+			use a variable as if it were an integer.</li>
+			<li>Assignment:  <tt>someVar=someValue</tt> (no spaces around the =).
+				<tt>someValue</tt> may be quoted, and must be if it contains characters
+					that are special to the shell.</li>
+			<li>Usually referenced w/a '<tt>$</tt>' (see <tt>let</tt>, below).
+				<dl>
+					<dt>Some common and special variables</dt>
+					<dd><b><tt>$?</tt></b> û value of last command</dd>
+					<dd><b><tt>$$</tt></b> û PID of this shell</dd>
+					<dd><b><tt>$#</tt></b> û number of positional parameters</dd>
+					<dd><b><tt>$*</tt></b> û all of the positional parameters</dd>
+					<dd><b><tt>$<i>n</i></tt></b> û <i>n</i>th argument (n&gt;0)</dd>
+					<dd><b><tt>$0</tt></b> û name of shell or shell script</dd>
+					<dd><b><tt>$PATH</tt></b> û search path (pretty standard)</dd>
+					<dd><b><tt>$HOME</tt></b> û your home directory</dd>
+					<dd><b><tt>$PWD</tt></b> û current directory</dd>
+					<dd><b><tt>$USER</tt></b> û your userid</dd>
+				</dl>
+			</li>
+			<li>May also be enclosed in braces:
+				<br>&nbsp;&nbsp;
+					<tt>${MYVAR}</tt>
+				<br>Handy when spaces are inappropriate:
+				<br>&nbsp;&nbsp;
+					<tt>FullName=${fName}${fExt}</tt>
+				<br>Other operations on variables are available using this form.  E.g.,
+				<br>&nbsp;&nbsp;
+					<tt>${#VAR} û length of VAR</tt>
+			</li>
+			<li>For positional parameters more than a single digit ( &gt;9 ),
+			must use this form:  <tt>${12}</tt>
+		</ul>
+	</li>
+	<li><b><tt>read [-p <i>prompt</i>] <i>var</i></tt></b> û reads a line
+		of input from stdin</li>
+	<li>conditionals</li>
+		<ul>
+			<li><b><tt>[ ]</tt></b> (Bourne), <b><tt>[[ ]]</tt></b> (no wildcard)
+				<ul>
+					<li>strings: <b><tt>&lt;</tt></b>, <b><tt>&gt;</tt></b>,
+						<b><tt>==</tt></b>, <b><tt>!=</tt></b>, <b><tt>-z</tt></b>
+						(true if length is 0), <b><tt>-n</tt></b> (true if length is non-0)
+					</li>
+					<li>arithmetic: <b><tt>-eq</tt></b>, <b><tt>-ne</tt></b>,
+						<b><tt>-lt</tt></b>, <b><tt>-le</tt></b>, <b><tt>-gt</tt></b>,
+						<b><tt>-ge</tt></b></li>
+					<li>logical: <b><tt>!</tt></b>, <b><tt>-a</tt></b>,
+						<b><tt>-o</tt></b></li>
+					<li>logical ([[]] only): <b><tt>!</tt></b>,
+						<b><tt>&amp;&amp;</tt></b>, <b><tt>||</tt></b></li>
+					<li>files (partial):
+						<br>&nbsp;&nbsp;<b>Note</b>: operators must have spaces around them
+						<table>
+							<tr><td><b><tt>-d</tt></b></td>
+								<td>true if file exists and is a directory</td>
+							</tr>
+							<tr><td><b><tt>-e</tt></b></td>
+								<td>true if file exists</td>
+							</tr>
+							<tr><td><b><tt>-f</tt></b></td>
+								<td>true if file exists and is a regular file</td>
+							</tr>
+							<tr><td><b><tt>-r</tt></b></td>
+								<td>true if file exists and is readable</td>
+							</tr>
+							<tr><td><b><tt>-w</tt></b></td>
+								<td>true if file exists and is writeable</td>
+							</tr>
+							<tr><td><b><tt>-x</tt></b></td>
+								<td>true if file exists and is executable</td>
+							</tr>
+						</table>
+						E.g.,
+						<br>&nbsp;&nbsp;<tt>if [[ -e README ]] ; then more README ; fi</tt>
+					</li>
+				</ul>
+			</li>
+			<li><b><tt>let</tt></b>, or <b><tt>(( ))</tt></b> (bash only)</li>
+			<ul>
+				<li>don't use the '$' for most vars</li>
+				<li>can use the natural C operators, plus <tt>**</tt>
+				for exponentiation</li>
+			</ul>
+		</ul>
+	<li>Branches and loops
+		<ul><tt>
+			<li><b><tt>if</tt></b> TEST1 <b><tt>; then</tt></b>
+				<br>&nbsp;&nbsp;TRUE-COMMANDS
+				<br>[<b><tt>elif</tt></b> TEST2 <b><tt>; then</tt></b>
+				<br>&nbsp;&nbsp;MORE-COMMANDS ]
+				<br>[<b><tt>else</tt></b>
+				<br>&nbsp;&nbsp;ALT-COMMANDS]
+				<br><b><tt>fi</tt></b>
+			</li>
+			<li><b><tt>for</tt></b> NAME [in WORD] <b><tt>; do</tt></b>
+				<br>&nbsp;&nbsp;COMMANDS
+				<br><b><tt>done</tt></b>
+			</li>
+			<li><b><tt>for ((</tt></b> INIT; TEST; ITER_STMT <b><tt>)) ; do</tt></b>
+				<br>&nbsp;&nbsp;COMMANDS
+				<br><b><tt>done</tt></b>
+			</li>
+			<li><b><tt>while</tt></b> TEST <b><tt>; do</tt></b>
+				<br>&nbsp;&nbsp;COMMANDS
+				<br><b><tt>done</tt></b>
+			</li>
+			<li><b><tt>break</tt></b>, <b><tt>continue</tt></b>, just like C</li>
+		</tt>
+		</ul>
+	</li>
+</ul>
+
+
+<script><!--
+	footer()
+	//--></script>
+
+</body>
+</html>

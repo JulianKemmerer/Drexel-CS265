@@ -1,0 +1,33 @@
+<project default="compile">
+  <target name="prob1">
+	<javac srcdir='./' includes='prob1.java'/>
+	<java classname='prob1'>
+	  <arg value="Julian"/>
+    </java>
+  </target>
+  <target name="prob2">
+	<javac srcdir='./' includes='prob2.java'/>
+	<java classname='prob2'>
+	  <arg value="28"/>
+    </java>
+  </target>
+  <target name="prob3">
+	<javac srcdir='./' includes='prob3.java'/>
+	<java classname='prob3'>
+	  <arg value="2000"/>
+    </java>
+  </target>
+  <target name="prob4">
+	<javac srcdir='./' includes='prob4.java'/>
+	<java classname='prob4'>
+	  <arg value="0"/>
+    </java>
+  </target>
+  <target name="clean">
+	<delete>
+	  <fileset dir="./">
+		<include name='*.class'/>
+	  </fileset>
+	</delete>
+  </target>
+</project>

@@ -1,0 +1,30 @@
+public class prob3
+{
+	public static void main( String[] args )
+	{
+		if(args.length >=1)
+		{
+			String s = args[0];
+			int num = Integer.parseInt(s);
+			Boolean isLeap = false;
+			if(num%4 == 0)
+			{
+			  isLeap = true;
+			  if(num%100 == 0)
+			  {
+				isLeap = false;
+				if(num%400 == 0)
+				{
+				  isLeap = true;
+				}
+			  }
+			}
+			System.out.println("Leap Year?: " + isLeap.toString());
+		}
+		else
+		{
+			System.out.println("Error: No year supplied");
+		}
+	}
+}
+

@@ -1,0 +1,36 @@
+Q1.1
+A segmentation fault occured.
+A file called "core" was recently modified along with the output from compiling bug3.
+
+Q1.2
+No stack is given:
+(gdb) BT
+No stack.
+
+It may have 'bombed' in main
+
+Q1.3
+A. bug1.c does not compile. Fixed by passing 'n' by reference rather than by value in scanf.
+B. bug2.c does not compile. Fixed: %d for ints and %f for doubles
+C. Ran the program in gdb:
+(gdb) bt
+#0  0x00007ffff7b86936 in ?? () from /lib/libc.so.6
+#1  0x000000000040099f in inTable (s=0x601160 "abc\n") at bug3.c:79
+#2  0x000000000040090d in main (argc=2, argv=0x7fffffffe408) at bug3.c:58
+Looked in bug3.c:79.
+index must be outside array size
+index starts at 0 - probably fine
+index ends at (numlines -1) - seems ok
+Looking for how numlines is set
+! numlines is incremented before the first assignment
+Changed to incrementing after assignment
+No more seg fault.
+D.avg.c does not compile. Fixed by passing n by reference.
+E. Program needs a randomized pivot location so that it does not return a array with an empty first element (seg fault). You could assert that pivot location has changed.
+
+Q1.4
+The compiler can only detect syntax errors (and some logical errors like unreachable code)
+
+Q1.5
+If the compare functions are type specific, the compiler will catch this error.
+If the compare functions are not type specific an error will be thrown at run time.

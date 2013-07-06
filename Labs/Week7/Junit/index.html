@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta content="Vera Zaychik &amp; Kurt Schmidt" name="Author">
+	<title>Lab - Junit</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../../images/blueTexture.jpeg">
+
+<h1>Lab - Junit</h1>
+
+<p>Implement a Java class <tt>gInt</tt> (Gaussian Integer) and write a JUnit
+test suite.  Use Ant to bring it all together.</p>
+
+<h3>Background</h3>
+<p>A Gaussian integer is a number of the form <tt>a</tt> + <tt>b</tt>
+<b>i</b>, where <tt>a</tt> (the <i>real</i> part), <tt>b</tt> (the
+<i>imaginary</i> part) are integers, and <b>i</b> is the square root of
+-1.</p>
+
+<p>They are added in a very normal way.  (<tt>a</tt> + <tt>b</tt> <b>i</b>)
++ (<tt>c</tt> + <tt>d</tt> <b>i</b>) = (<tt>a+c</tt>) + (<tt>b+d</tt>)
+<b>i</b>.</p>
+
+<p>Multiplication should also look familiar.  (<tt>a</tt> + <tt>b</tt>
+<b>i</b>) * (<tt>c</tt> + <tt>d</tt> <b>i</b>) = <tt>(ac-bd)</tt> +
+<tt>(ad+bc)</tt> <b>i</b>.</p>
+
+<hr>
+<ul>
+<h3>The <tt>gInt</tt> class</h3>
+
+<p>This class should have, at a minimum, the following behavior:</p>
+
+<ul>
+	<li><tt>gInt( int r )</tt> - c'tor.  Note, a real # <i>is</i> a complex
+		number</li>
+	<li><tt>gInt( int r, int i )</tt> - c'tor</li>
+	<li><b>Note:</b>  No default c'tor.  All objects must be initialised</li>
+	<li><tt>int real()</tt> - the real part of the number</li>
+	<li><tt>int imag()</tt> - the imaginary part of the number</li>
+	<li><tt>gInt add( gint rhs )</tt> - return a new <tt>gInt</tt>, the sum of
+		<tt>this</tt> and <tt>rhs</tt>.  Note, the object receiving this message
+		is <u>not</u> modified.</li>
+	<li><tt>gInt multiply( gint rhs )</tt> - return a new <tt>gInt</tt>, the
+		product of <tt>this</tt> and <tt>rhs</tt>.  Note, the object receiving
+		this message is <u>not</u> modified.</li>
+	<li><tt>float norm()</tt> - return the L2-norm of the integer (the
+		distance from the origin).  The object is not modified.</li>
+</ul>
+
+<hr>
+<h3>Your test framework - the <tt>gIntTest</tt> class</h3>
+
+<p>You can name the methods how you'd like (as long as they're good names).
+You will provide a test for each method, above (but not for the c'tors).</p>
+
+<p>Remember, a single test does not go far towards being reliable.  Consider
+all of the preconditions and postconditions!  They must be tested too, not
+simply that you "got the right answer".</p>
+
+<hr>
+<h3>Ant</h3>
+
+<p>Provide a build file that compiles your classes and runs the tests.  The
+default target will be <tt>test</tt>, which depends on the <tt>compile</tt>
+target.</p>
+
+<hr>
+<h3>Misc</h3>
+<ul>
+	<li>Use the example in this lab directory for guidance</li>
+	<li><strong>One method at a time!</strong></li>
+	<li>Write the comments (pre- and post-conditions) for each method
+		<u>first</u></li>
+	<li>Then write the corresponding test for that method</li>
+	<li><i>Then</i> you actually implement the method</li>
+	<li>Test</li>
+</ul>
+
+</ul>
+<hr>
+<h2>Submission</h2>
+
+<p>Submit the following files to WebCT:</p>
+
+<ul>
+	<li><tt><b>gInt.java</b></tt> - the <tt>gInt</tt> class</li>
+	<li><tt><b>gIntTest.java</b></tt> - the TestCase for <tt>gInt</tt></li>
+	<li><tt><b>build.xml</b></tt> - the Ant build file</li>
+	<li><tt><b>README</b></tt> (opt.) - if you have anything to tell me before
+		I grade the lab</li>
+</ul>
+
+</body>
+</html>

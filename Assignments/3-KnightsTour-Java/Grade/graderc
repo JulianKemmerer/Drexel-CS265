@@ -1,0 +1,30 @@
+### ASSIGNMENT-SPECIFIC VARIABLES ###
+
+	export assn=a3
+	export course="CS265"	# no spaces, please.  Mess up the grade tabulation
+	weight=50
+
+		# white-space separated list of test scripts to run
+		#		(names may be quoted)
+		#		test.name is called to test `name'.  Output is redirected to
+		#		grade sheet
+	scriptList=(
+		'knight'
+	)
+
+		# white-space separated list of files to view
+		#		(those that aren't inspected in a test script)
+	viewList=(
+	)
+
+		# set to 1 to show answers on the gradesheet
+	bShowLabKey=0
+	labKey=
+
+		# optional file, submitted by student, to be viewed prior to grading
+	readme=README
+
+	export gradesheet=${assn%.txt}.grade
+
+		# do you want .gz .gzip .tar.gz .tar.gzip .tgz .zip extracted?
+	export bExtract=1

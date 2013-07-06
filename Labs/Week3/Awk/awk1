@@ -1,0 +1,9 @@
+#!/usr/bin/awk -f
+
+BEGIN { FS = "," }
+
+NR == 1 { cols = NF; }
+
+NF != cols {
+	printf "%s (line %d) has incorrect number of fields = %d\n", $1, NR, NF;
+}

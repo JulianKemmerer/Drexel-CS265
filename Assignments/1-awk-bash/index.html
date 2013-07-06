@@ -1,0 +1,275 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+  <meta name="Author" content="Jeremy R. Johnson">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../../courseInfo.js"></script>
+	<script language="JavaScript" src="../../../Scripts/courseFormat.js"></script>
+  <title>Assignment -- Awk, Bash</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1>Assignment -- Awk, Bash</h1>
+
+<p>Note this assignment has 2 parts, 2 different tasks for you.</p>
+
+<hr>
+<h3>Finding Anagrams</h3>
+
+<p>The purpose of this assignment is to get some experience using AWK, and
+explore the UNIX philosophy of combining simple programs using pipes can
+solve an interesting problem.  The problem is to find all anagrams in a file
+containing words.  The UNIX tools that will be used are:  (1) a small C
+program that uses system calls to do string operations and sorting, (2) the
+UNIX sort command, (3) a small AWK program, and finally the UNIX tail
+command.</p>
+
+<h3>Problem Statement and Solution</h3>
+
+<p>Two words are anagrams if one can be obtained from the other by permuting
+the letters.  For example, the words stop and pots are anagrams since the
+letters "s", "t", "o", and "p" in stop can be rearranged to obtain the word
+pots.</p>
+
+<p>A naive way to test if two words are anagrams is to produce all permutations
+of the letters of one of the words and compare each possible permuted
+sequence of letters to the other word.  If any sequence is equal to the other
+word then they are anagrams.  For example, to determine if "ant" and "tan"
+are anagrams, we first generate the six possible permutations of the letters
+in ant:</p>
+
+<blockquote><pre>ant
+atn
+nat
+nta
+tan
+tna</pre></blockquote>
+
+<p>and compare each to tan.  Since the 5th permuted sequence is equal to tan,
+ant and tan are anagrams.</p>
+
+<p>The problem with this approach is that as the number of letters increases,
+the number of permuted sequences gets very big.  For example, there are
+3,628,800 permutations of a 10 letter word.</p>
+
+<p>A better approach to test if two words are anagrams is to sort the letters
+in each word and then compare the sorted words.  If the words are anagrams
+then they must have the same letters and if they have the same letters
+then they are anagrams.  Therefore this test determines if two words are
+anagrams with one comparison.  For example, if we sort the letters in 
+stop and pots, we obtain the letter sequence opts for both words, which shows
+that they are anagrams.</p>
+
+<p>Given a file containing a list words we want to find all of the anagrams.
+We will do this by dividing the words into anagram classes.  An anagram
+class containing a particular word is the collection of words in the
+input list that are anagrams of the given word.  Note that if two words
+are anagrams to a given word then they are anagrams to each other.  Thus
+any two words in an anagram class are anagrams.  Moreover, all of the
+words in the input file that are anagrams to any of the words in the anagram
+class are contained in the anagram class.</p>
+
+<p>A naive way to find all of the anagram classes is for each word to
+search through all of the other words and check each to see if it
+is an anagram.  This approach is very time consuming.  A better approach
+would be to:</p>
+
+<ol>
+	<li>For each word in the file sort the letters to produce a key, a
+		<i>cardinal representation</i> of that word.  Produce a one-line entry
+		like this:
+			<blockquote><tt>opts stop</tt></blockquote>
+	</li>
+	<li>Sort all of the lines in the input file by their key, that first
+		column.</li>
+	<li>In the sorted list find all adjacent words with the same key (these
+		are the anagram classes).</li>
+</ol>
+
+<p>This will be implemented in UNIX in the following steps:</p>
+
+<ol>
+	<li>Use a C program called <tt>sign</tt> (look at <a target='265file'
+		href='sign.c'>sign.c</a>) to read the <tt>stdin</tt> (the dictionary on
+	our machines, <tt>/usr/share/dict/words</tt>) and to produce an output
+	file where each line contains the key (the letters of the word sorted)
+	followed by the word.  This program will read from standard input and
+	write to standard output so that we do not have to specify the input file
+	in the program and we can use the output in a pipe.  The name of the the
+	executable program will be called <tt>sign</tt>.
+
+	<blockquote><tt>gcc -osign sign.c</tt></blockquote>
+</li>
+
+<li><p>The temporary file containing words and keys produced in (1) will be
+sorted using the UNIX sort command.</p></li>
+
+<li><p>Use an AWK program to collect all adjacent words with the same key.
+The result will be a file containing an anagram class per line.  The
+file containing the awk program is <a target='265file' href='squash.awk'>
+squash.awk</a> .</p>
+
+<p>Here is the UNIX command to do this.  The file
+<tt>/usr/share/dict/words</tt> contains a list of words (almost 235,000,
+currently).  To verify this use the command <tt>wc</tt>.</p>
+
+	<blockquote><tt>
+	<nobr>% sign &lt; /usr/share/dict/words | sort | awk -f squash.awk &gt;
+	out</nobr>
+	</tt></blockquote>
+
+<p>The output will be in the file <tt>out</tt>.  The awk command can be put
+into a file called bash script called <tt>squash</tt> .  Such a file
+containing UNIX commands is called a shell script and is itself interpred as
+a command as soon as the execute permission has been set.  The resulting
+UNIX pipe, which uses the shell script squash instead of the call to awk,
+becomes:</p>
+
+	<blockquote><tt>
+		<nobr>% sign &lt; /usr/share/dict/words | sort | squash &gt; out</nobr>
+	</tt></blockquote>
+
+<p>You could, alternatively, make the awk script executable (there are
+examples in the lab directory).</p>
+
+<p>To find the largest anagram classes, we can use awk to first count the
+number of words in each class, output another file, where a line is preceded
+by the count, and the cardinal representation (the old key) is removed:</p>
+
+	<blockquote><tt><pre> 7 opts pots stop ...</pre></tt></blockquote>
+
+<p>, and then sort the file by these counts.  Here is a UNIX command to do
+this:</p>
+
+	<blockquote><tt>
+		<nobr>% awk '{ print NF " " $0}' &lt; out | sort -n | tail</nobr>
+	</tt></blockquote>
+
+<p>In this command the AWK program is given between the single quotes (in
+this case we don't want the shell interpreting any of the special characters
+in there).  The UNIX command prints the last 10 lines of a file.  Here is
+some sample output:</p>
+
+<blockquote><tt>
+<pre>4 glare lager large regal
+4 lament mantel mantle mental
+4 lascar rascal sacral scalar
+4 leap pale peal plea
+4 leapt petal plate pleat
+4 least slate stale steal
+4 mate meat tame team
+4 pare pear rape reap
+4 resin rinse risen siren
+5 caret carte cater crate trace</pre>
+</tt></blockquote>
+
+<p>Students should try these commands to see if they can produce similar
+output.  Note that you can view the output of any intermediate stage
+by piping the results through more.  For example:</p>
+
+	<blockquote><tt>
+		<nobr>%  sign &lt; /usr/share/dict/words | more</nobr>
+	</tt></blockquote>
+
+<p>You can quit more by typing "q" ("man more" for more info on more).</p>
+
+<p>You can submit as many source files as you like.  There needs to be a
+top-level script called <tt><b>anagram</b></tt> that puts it all
+together.  This will be called to do the work.  See the <a target='265file'
+	href='Makefile'>Makefile</a> .</p>
+
+</li>
+</ol>
+
+<hr>
+<h3>A "safe" delete</h3>
+
+<p>Write, as a script, a "safe" delete command. Filenames passed as
+command-line arguments to this script are not deleted, but instead
+gzipped (with compression), then moved to the trash directory, specified in
+<tt>$TRASH</tt> (use <tt>$HOME/.trash/</tt> if this variable is not set).
+At invocation, the script checks the "trash" directory for files older than
+48 hours and deletes them.</p>
+
+<p>Each delete will create a tarball named
+<blockquote><nobr><tt><i>yy</i>-<i>mm</i>-<i>dd</i>
+<i>HH</i>.<i>MM</i>.<i>SS</i>.tgz</tt></nobr></blockquote>
+
+<p>, where</p>
+
+<table>
+  <tr><td><i>yy</i></td>
+    <td>last 2 digits of year</td></tr>
+  <tr><td><i>mm</i></td>
+    <td>month, 01..12</td></tr>
+  <tr><td><i>dd</i></td>
+    <td>day, 01..31</td></tr>
+  <tr><td><i>HH</i></td>
+    <td>hour, 01..24</td></tr>
+  <tr><td><i>MM</i></td>
+    <td>minute, 01..59</td></tr>
+  <tr><td><i>SS</i></td>
+    <td>second, 01..59</td></tr>
+</table>
+
+<p>, and placed in a directory as specified in the $TRASH variable (if it is
+not set, you are to use <tt>$HOME/.trash/</tt>).  You'll need to create this
+directory if it doesn't exist.</p>
+
+<p>Read on the <tt>date</tt> command; you can specify a format for
+output.</p>
+
+<p>Also, read on the <tt>tar</tt> command; by default, relative path
+information is stored.  But, for this task, you'd want to store the full
+path, so deleted entries can be restored, regardless of the current
+directory.</p>
+
+<p>For purging the trash directory you can parse the filenames, or, take a
+closer look at the <tt>-mtime</tt> test in the <tt>find</tt> utility.</p>
+
+<p>This file will be called <tt><b>myRm</b></tt>
+
+<p>I'll probably add details, answer questions.  In the meantime, make
+<u>good</u> use of the discussion board.</p>
+
+<hr>
+<h2>Submission</h2>
+
+<ul>
+	<li><tt><b>anagram</b></tt> - The top-level script, for part 1</li>
+	<li>Any other files req'd for <tt>anagram</tt> to do its job.</li>
+	<li><tt><b>Makefile</b></tt> <br>
+	Contains the following targets:
+		<ul>
+			<li><tt>runAnagram</tt> - makes sure all your other stuff (specifically,
+			<tt>sign</tt>) is built, so <tt>anagram can run</tt>.</li>
+			<li><tt>run</tt> - for you, when submitting, not for us.</li>
+		</ul>
+		Note, the Makefile provided should be sufficient.
+	</li>
+	<li><tt><b>myRm</b></tt> - solution from part 2</li>
+	<li><tt><b>README</b></tt> <i>(optional)</i> - anything you want/need to
+	tell us</li>
+</ul>
+
+<p>Please note, use the filenames <b>as shown here</b>.  I.e.,
+<tt>README.txt</tt> will <i>not</i> be read before grading.</p>
+
+<p>Tar it all up, submit to assignment ID <tt><b>A1</b></tt> , using
+<tt>submit_cli</tt>.</p>
+
+</body>
+</html>

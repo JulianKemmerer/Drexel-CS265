@@ -1,0 +1,16 @@
+#!/usr/bin/python
+# anagram - quick dummy script, testing hwrun
+#
+# Kurt Schmidt
+#
+# EDITOR:  tabstop=2, cols=80
+#
+
+import os
+
+keys = os.environ.keys()
+keys.sort()
+
+for v in keys :
+	print v, os.environ[v]
+

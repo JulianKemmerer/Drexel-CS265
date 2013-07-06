@@ -1,0 +1,16 @@
+<project default='test'>
+  <target name='test' depends='compile'>
+	<junit>
+	  <formatter type='plain'/>
+	  <test name='gIntTest'/>
+	  <classpath>
+		<pathelement path="."/>
+	  </classpath>
+	</junit>
+	<java classname="gIntTest" classpath="." fork="true" />
+  </target>
+
+  <target name="compile">
+	  <javac srcdir="." includeantruntime="false"/>
+  </target>
+</project>

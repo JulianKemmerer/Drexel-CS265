@@ -1,0 +1,36 @@
+Q1:
+./.btmail/when
+./.bash_history
+./CS265/Labs/Week2/.Week2Questions.swp
+./CS265/Labs/Week2/Week2Questions
+
+Q2:
+find -name "*.bash"
+
+Q3:
+./CS265/Labs/Week1/hello.bash
+./tmp/gotMe.bash
+
+Q4:
+Chars: 2538
+Words: 421
+Lines: 73
+
+Q5:
+grep "the" breadIsDangerous.txt | wc -l
+
+Q6:
+A .bak backup file exists
+
+Q7:
+The diff command outputs the line by line difference between two files
+
+Q8:
+Nothing was output. The diff between the same file is nothing.
+
+Q9: A return value of 0 indicates that the string was found within the file.
+A return value of 1 indicates that the string was not found within the file.
+A return value of 2 indicates that the file did not exist
+
+Q10,Q11,Q12: Uploaded with lab
+

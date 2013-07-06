@@ -1,0 +1,146 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+  <meta name="Author" content="Kurt Schmidt">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Assignment">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../../courseInfo.js"></script>
+	<script language="JavaScript" src="../../../Scripts/courseFormat.js"></script>
+  <title>Assignment -- Java Infix Parser</title>
+</head>
+
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1> Simulate the Knight's</h1>
+
+<h2> Introduction </h2>
+
+<p>This assignment will give you practice with Java (ant, jar).
+
+<p> You will simulate
+postfix, and then evaluates it.</p>
+
+<p> You will use <tt>ant</tt> to build  your program </p>
+
+<hr>
+<h2> The Assignment </h2>
+
+<p> You will write a Java program that attempts to solve the Knight's Tour
+for a given board by brute-force methods.  The Knight's Tour is an attempt
+to move the knight on a board, such that each space is visited exactly once.
+See the Web for more information. </p>
+
+<p> Your program will read 3 arguments: rows, columns, attempts .  The first
+2 arguments are the size of the board, rows x columns.  The last argument is
+the number of attempts to make. </p>
+
+<p> The knight will start at (1, 1).  Look around, see what moves are
+availabe, and randomly choose one (note, that is <strong>not</strong> the
+same as randomly choosing a move, and then seeing if it's legal).  If you
+have no more moves (and you haven't covered the board), then the knight
+didn't make it. </p>
+
+<p> You then make another attempt, starting at (1, 1), until the knight
+succeeds, or you've used up the number of attempts.  At the end, whichever
+the outcome, you will print a history of the knight's last attempt.  E.g.,
+given a 3x3 board, output:</p>
+
+<pre> 1  6  3 
+ 4  x  8 
+ 7  2  5</pre>
+
+<p> Your code will be documented properly, using Javadoc-style comments, for
+each class, and each method. </p>
+
+
+<p> All will be done through an <tt>ant</tt> file.  Set up arguments for
+running the program.  4x4 board, 50 attempts. </p>
+
+
+<p>I will also run Javadoc; I expect to get something useful out.</p>
+
+
+<hr>
+<h3>Your code</h3>
+
+<p> You'll need some smart way to store the moves you made on the board.
+</p>
+
+<hr>
+<h3>Output</h3>
+
+<p> The history of the last attempt, as described above. </p>
+
+<hr>
+<h3>Documentation</h3>
+
+<p>I am NOT looking for a lot of comments here.  Remember, your code should
+read like a book.  But, each class should have a description, and each
+method should have a description and a discussion of inputs, side-effects,
+etc.</p>
+
+<p>You will use Javadoc-style comments.  HTML documentation will be created
+from your code, using <tt>ant</tt> (and <tt>javadoc</tt>, of course).</p>
+
+<p>The HTML files will end up in a subdirectory of your source dir (which is
+also the CWD) called <tt><b>docs/</b></tt>.</p>
+
+<p>See <tt>CS265/Labs/Java/Javadoc/</tt> for an example.</p>
+
+<hr>
+<h3>Ant</h3>
+
+<p>You will include a <tt>build.xml</tt> that has, at a minimum, the
+following targets:</p>
+
+<ul>
+	<li><tt><b>compile</b></tt> - compiles all of your <tt>.java</tt>
+		files.</li>
+	<li><tt><b>run</b></tt> - runs your program, with the arguments described
+		above.  Depends on the <tt>compile</tt>
+		<br> <b>Note</b>, the code will need to be compiled from your
+		source.  I will delete all <tt>class</tt> files before we start, so...
+		The <tt>run</tt> target will make sure all of your source files are run
+		through <tt>javac</tt>.</li>
+	<li><tt><b>doc</b></tt> - runs <tt>javadoc</tt> on all of your source
+		files, creating files in <tt>./docs</tt></li>
+</ul>
+
+<p> Note, since you're supplying <tt>build.xml</tt>, the names for the rest
+of the code don't matter.  You can have 1 class, or 18 (though, that is
+probably overkill).  The filenames don't matter to me (that is, they should
+be good names, but I don't need to know them ahead of time). </p>
+
+
+<hr>
+<h2>Submission</h2>
+
+<ul>
+	<li><tt><b>build.xml</b></tt> - your ant configuration file</li>
+	<li><u>all</u> of your <strong>source</strong> files.  <tt>.class</tt>
+		files will be deleted before I start, so, must be built from
+		source.</li>
+	<li><tt><b>README</b></tt> <i>optional</i> - anything you want to say to
+		me before I grade.</li>
+</ul>
+
+<b>Please note</b>  You will use the filenames as listed here, and submit
+them all to the proper assignment.  If this is <b>not</b> clear, then see me
+in class.  If I get programs submitted to the wrong directories, I will be
+irate, which may, in some subconscious way, affect your grades.
+Adversely.</font>
+
+</body>
+</html>

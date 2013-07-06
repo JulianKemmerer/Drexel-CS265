@@ -1,0 +1,17 @@
+Q1:
+1. Hide implementation details: The user of your implimentation should not be concerned with or aware of exactly way your class functions - only that it does correctly.
+2. Choose a small orthogonal set of primitives: Do not have functions/methods etc. that perform the same task in multiple ways.
+3. Don't reach behind the user's back: Do not make changes other than exactly what is stated in your implementations documentation.
+4. Do the same thing the same way everywhere: Use the same formatting everywhere (ex. function argument order) so that the user is not confused with changing formats
+
+Q2:
+Cannot have more than 199 chars in a line
+Cannot have more than 20 fields in a line
+
+Q3:
+Size of line is not limited
+Number of fields not limited
+Addtional functionality added regarding checking for end of line
+Created function for splitting line into fields
+Added method to obtain field and number of fields
+

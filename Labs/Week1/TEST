@@ -1,0 +1,262 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		    Lesson 5.3: A SELECTIVE WRITE COMMAND
+
+
+	** To save part of the file, type   :#,# w FILENAME **
+
+  1. Once again, type  :!dir  or  :!ls  to obtain a listing of your directory
+     and choose a suitable filename such as TEST.
+
+  2. Move the cursor to the top of this page (screen) and type  Ctrl-g  to
+     find the number of that line.  REMEMBER THIS NUMBER!
+
+  3. Now move to the bottom of the page and type  Ctrl-g again.  REMEMBER THIS
+     LINE NUMBER ALSO!
+
+  4. To save ONLY a section to a file, type   :#,# w TEST   where #,# are
+     the two numbers you remembered (top,bottom) and TEST is your filename.
+
+  5. Again, see that the file is there with  :!ls  but DO NOT remove it.
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		   Lesson 5.4: RETRIEVING AND MERGING FILES
+
+
+       ** To insert the contents of a file, type   :r FILENAME **
+
+  1. Type   :!dir   to make sure your TEST filename is present from before.
+
+  2. Place the cursor at the top of this page.
+
+NOTE:  After executing Step 3 you will see Lesson 5.3.	Then move DOWN to
+       this lesson again.
+
+  3. Now retrieve your TEST file using the command   :r TEST   where TEST is
+     the name of the file.
+
+NOTE:  The file you retrieve is placed starting where the cursor is located.
+
+  4. To verify that a file was retrieved, cursor back and notice that there
+     are now two copies of Lesson 5.3, the original and the file version.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			       LESSON 5 SUMMARY
+
+
+  1.  :!command  executes an external command.
+
+      Some useful examples are:
+	 (Unix)
+	  :!ls		   -  shows a directory listing.
+	  :!rm FILENAME   -  removes file FILENAME.
+
+  2.  :w FILENAME  writes the current Vim file to disk with name FILENAME.
+
+  3.  :#,#w FILENAME  saves the lines # through # in file FILENAME.
+
+  4.  :r FILENAME  retrieves disk file FILENAME and inserts it into the
+      current file following the cursor position.
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			 Lesson 6.1: THE OPEN COMMAND
+
+
+ ** Type  o  to open a line below the cursor and place you in Insert mode. **
+
+  1. Move the cursor to the line below marked --->.
+
+  2. Type  o (lowercase) to open up a line BELOW the cursor and place you in
+     Insert mode.
+
+  3. Now copy the line marked ---> and press <ESC> to exit Insert mode.
+
+---> After typing  o  the cursor is placed on the open line in Insert mode.
+
+  4. To open up a line ABOVE the cursor, simply type a capital	O , rather
+     than a lowercase  o.  Try this on the line below.
+Open up a line above this by typing Shift-O while the cursor is on this line.
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Lesson 6.2: THE APPEND COMMAND
+
+
+	     ** Type  a  to insert text AFTER the cursor. **
+
+  1. Move the cursor to the end of the first line below marked ---> by
+     typing  $	in Normal mode.
+
+  2. Type an  a  (lowercase) to append text AFTER the character under the
+     cursor.  (Uppercase  A  appends to the end of the line.)
+
+Note: This avoids typing  i , the last character, the text to insert, <ESC>,
+      cursor-right, and finally, x , just to append to the end of a line!
+
+  3. Now complete the first line.  Note also that append is exactly the same
+     as Insert mode, except for the location where text is inserted.
+
+---> This line will allow you to practice
+---> This line will allow you to practice appending text to the end of a line.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		    Lesson 6.3: ANOTHER VERSION OF REPLACE
+
+
+      ** Type a capital  R  to replace more than one character. **
+
+  1. Move the cursor to the first line below marked --->.
+
+  2. Place the cursor at the beginning of the first word that is different
+     from the second line marked ---> (the word 'last').
+
+  3. Now type  R  and replace the remainder of the text on the first line by
+     typing over the old text to make the first line the same as the second.
+
+---> To make the first line the same as the last on this page use the keys.
+---> To make the first line the same as the second, type R and the new text.
+
+  4. Note that when you press <ESC> to exit, any unaltered text remains.
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			    Lesson 6.4: SET OPTION
+
+	  ** Set an option so a search or substitute ignores case **
+
+  1. Search for 'ignore' by entering:
+     /ignore
+     Repeat several times by hitting the n key
+
+  2. Set the 'ic' (Ignore case) option by typing:
+     :set ic
+
+  3. Now search for 'ignore' again by entering: n
+     Repeat search several more times by hitting the n key
+
+  4. Set the 'hlsearch' (high-light search) and 'incsearch' options:
+     :set hls is
+
+  5. Now enter the search command again, and see what happens:
+     /ignore
+
+  6. To remove the highlighting of matches, type:
+     :nohlsearch    (or   :noh   for short)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			       LESSON 6 SUMMARY
+
+
+  1. Typing  o  opens a line BELOW the cursor and places the cursor on the open
+     line in Insert mode.
+     Typing a capital  O  opens the line ABOVE the line the cursor is on.
+
+  2. Type an  a  to insert text AFTER the character the cursor is on.
+     Typing a capital  A  automatically appends text to the end of the line.
+
+  3. Typing a capital  R  enters Replace mode until  <ESC>  is pressed to exit.
+
+  4. Typing ":set xxx" sets the option "xxx"
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		       LESSON 7: ON-LINE HELP COMMANDS
+
+
+		      ** Use the on-line help system **
+
+  Vim has a comprehensive on-line help system.  To get started, try one of
+  these three:
+  - press the <HELP> key (if you have one)
+  - press the <F1> key (if you have one)
+  - type   :help <ENTER>
+
+  Type   :q <ENTER>   to close the help window.
+
+  You can find help on just about any subject, by giving an argument to the
+  ":help" command.  Try these (don't forget pressing <ENTER>):
+
+  :help w
+  :help c_<T
+  :help insert-index
+  :help user-manual
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		       LESSON 8: CREATE A STARTUP SCRIPT
+
+			  ** Switch on Vim features **
+
+  STOP HERE.  I'LL LEAVE THIS TEXT, FOR YOUR CURIOSITY, BUT WE'LL TALK
+  ABOUT THIS NEXT WEEK.
+
+  Vim has many more features than Vi, but most of them are disabled by default.
+  To start using more features you have to create a "vimrc" file.
+
+  1. Start editing the "vimrc" file, this depends on your system:
+  :edit ~/.vimrc			for Unix
+
+  (remember, ~/ is YOUR home directory)
+
+  2. Now read the example "vimrc" file text:
+
+  :read $VIMRUNTIME/vimrc_example.vim
+
+  3. Write the file with:
+
+  :write
+
+  The next time you start Vim it will use syntax highlighting.
+  You can add all your preferred settings to this "vimrc" file.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  This concludes the Vim Tutor.  It was intended to give a brief overview of
+  the Vim editor, just enough to allow you to use the editor fairly easily.
+  It is far from complete as Vim has many many more commands.  Read the user
+  manual next: ":help user-manual".
+
+  For further reading and studying, this book is recommended:
+	Vim - Vi Improved - by Steve Oualline
+	Publisher: New Riders
+  The first book completely dedicated to Vim.  Especially useful for beginners.
+  There are many examples and pictures.
+  See http://iccf-holland.org/click5.html
+
+  This book is older and more about Vi than Vim, but also recommended:
+	Learning the Vi Editor - by Linda Lamb
+	Publisher: O'Reilly & Associates Inc.
+  It is a good book to get to know almost anything you want to do with Vi.
+  The sixth edition also includes information on Vim.
+
+  This tutorial was written by Michael C. Pierce and Robert K. Ware,
+  Colorado School of Mines using ideas supplied by Charles Smith,
+  Colorado State University.  E-mail: bware@mines.colorado.edu.
+
+  Modified for Vim by Bram Moolenaar.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

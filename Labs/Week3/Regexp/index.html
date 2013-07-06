@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+	<meta name="Author" content="Kurt Schmidt"><meta name="Copyright" content="">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../courseInfo.js"></script>
+	<script language="JavaScript" src="../Scripts/courseFormat.js"></script>
+	<title> Lab - Regular Expressions </title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1> Lab - Regular Expressions </h1>
+
+<p> The directory for this lab is
+<tt>~kschmidt/public_html/CS265/Labs/Regexp</tt> </p>
+
+<h3> Introduction </h3>
+
+<p> For this lab you will supply regular expressions that return the
+requested matches.  You may test your answers out on the input file <a
+href='bright_side_of_life'>bright_side_of_life</a> . </p>
+
+<p> I would recommend <tt>egrep</tt> (<tt>grep -e</tt>).  Utilities
+implement REs slightly differently.  In some, special (meta-)
+characters that we've discussed have their special behavior, and must be
+escaped for the literal.  In others (like <tt>grep</tt> and <tt>vim</tt>),
+some of the meta-characters, by default, are literal, and must be escaped to
+invoke their special meanings. </p>
+
+<p> So, for example, if I want to print all lines that contain the string
+<i>kurt</i> in the file <tt>bright_side_of_life</tt>, it would look like
+this: </p>
+
+<blockquote><tt>
+	$ <b>egrep 'kurt' bright_side_of_life</b>
+</tt></blockquote>
+
+<p> You could use AWK to do this: </p>
+
+<blockquote><tt>
+	$ <b>awk '/kurt/' bright_side_of_life</b>
+</tt></blockquote>
+
+<p> Or in sed: </p>
+
+<blockquote><tt>
+	$ <b>sed -n '/kurt/p' bright_side_of_life</b>
+</tt></blockquote>
+
+<p> Whichever why you go,  please use the same for all questions in the lab,
+and specify above question 1, quite clearly, which you used .  Otherwise,
+it'll be assumed you used <tt>grep</tt>.</p>
+
+<p>Note that <tt>egrep</tt> is just <tt>grep -E</tt>, using extended regular
+expressions.</p>
+
+<h3> Instructions/Questions </h3>
+
+<p> For each of the following questions, provide a regular expression that
+returns the requested matches. </p>
+
+<p><b><font size=+1>Q 1</font></b>: match all lines that contain the
+string <i>the</i></p>
+
+<p><b><font size=+1>Q 2</font></b>: match all lines that contain the
+<u>word</u> <i>the</i> (not as a substring of a larger word)</p>
+
+<p><i>Hint:</i>  AWK (and grep and vi) all use <tt><b>\&lt;</b></tt> and
+<tt><b>\&gt;</b></tt> as word anchors (beginning and end, respectively); AWK
+doesn't understand the <tt><b>\b</b></tt> that vi does.</p>
+
+<p><b><font size=+1>Q 3</font></b>: match all lines that contain the word
+<i>Just</i></p>
+
+<p><b><font size=+1>Q 4</font></b>: match all lines that contain <i>Just</i>
+or <i>just</i></p>
+
+<p><b><font size=+1>Q 5</font></b>: match all lines that start w/the word
+<i>Just</i> or <i>just</i></p>
+
+<p><b><font size=+1>Q 6</font></b>: match all lines that contain the word
+<i>bad</i> or <i>mad</i></p>
+
+<p><b><font size=+1>Q 7</font></b>: match all lines that contain the word
+<i>death</i> or <i>breath</i></p>
+
+<p><b><font size=+1>Q 8</font></b>: match all lines that end with
+<i>you</i>.  Trailing puncuation is acceptable (so, possibly followed by a
+period or a comma)</p>
+
+<p><b><font size=+1>Q 9</font></b>: match lines that have leading
+whitespace?</p>
+
+<p><b><font size=+1>Q 10</font></b>: match lines are empty?</p>
+
+<p><b><font size=+1>Q 11</font></b>: How many are there?</p>
+
+<p> [what'd he say?] </p>
+
+</body></html>

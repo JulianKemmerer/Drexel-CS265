@@ -1,0 +1,76 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta name="Author" content="Kurt Schmidt">
+	<script language="JavaScript" src="../Scripts/courseFormat.js"></script>
+	<title>Debugging</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/spiral_notebook.gif">
+
+<font size="+2">
+
+<ul>
+
+<h1>Debugging Lab - gnu's GDB debugger</h1>
+
+<p>See my (still incomplete) <a
+	href='http://www.cs.drexel.edu/~kschmidt/Ref/gdb_reference.html'>GDB quick
+	reference</a></p>
+
+<ul>
+	<li>Look at <tt><b>bdg</b></tt>, gnu's debugger:</li>
+	<ol>
+		<li>Get the files <a href="kurt.c">kurt.c</a> and the <a href='input'>
+			sample input file</a> from
+			<tt><b>~kschmidt/public_html/CS265/Labs/Dbg/.</b></tt></li>
+		<li>Make some appropriate subdirectory for this lab and go there</li>
+		<li>Look at kurt.c, see what it's doing, how to use it</li>
+		<li>Compile it and run it.  Did it work?</li>
+		<li>Recompile using the <tt>-g</tt> option.  Note that the resulting
+			executable is larger than the earlier one.</li>
+		<li>Load the executable into the debugger:
+			<blockquote><tt>
+				<b>gdb</b><i>file</i>
+				</tt>
+			</blockquote></li>
+		<li>Enter <tt>break main</tt> to stop at the main function.
+			<ul>You may also use <tt>break <i>lineNr</i></tt> to stop at a
+				particular line.</ul>
+		</li>
+		<li>Enter <tt>set args input</tt> to give 'input' to the program on the
+			comand line</li>
+		<li>Type <tt>run</tt></li>
+		<li>Use next and step to look around, print to look at expressions, and
+		fix the program.</li>
+	</ol>
+	<li>Okay, now, practise on these other programs:
+		<ol>
+			<li><a href="bug1.c">bug1.c</a> - common bug in C.
+			<li><a href="bug2.c">bug2.c</a> - common bug in C.
+			<li>A program that causes a segmentation violation
+			<a href="sorti.c">sorti.c</a>.
+			To generate the error run sorti with the input
+			<a href="in">in</a>" 
+			This program uses qsort to sort an array of integers.  The error
+			comes from passing qsort a function to compare strings rather than
+			integers.  Why can't the compiler catch this?  You can uncover the problem
+			by producing looking at a stack trace from when the program crashed (see
+			the lab on how to do this).  What happens if you are using qsort to sort
+			strings and accidently pass the integer comparison function?
+			<li><a href="avg.c">avg.c</a> - example use of assert. 
+			<li><a href="quicksortbug.c">quicksortbug.c</a> - simple
+			bug in the quicksort program from the text - how would you find it?  What
+			assertions could you put into the code to check that the algorithm was
+			implemented properly?
+		</ol>
+</ul>
+
+</ul>
+
+</body>
+
+</html>

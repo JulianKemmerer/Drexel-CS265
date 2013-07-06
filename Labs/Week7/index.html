@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta content="Vera Zaychik &amp; Kurt Schmidt" name="Author">
+	<title>Lab - Java</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1>Lab - Java</h1>
+
+<hr>
+<h2>Useful links:</h2>
+<ul>
+	<li><a target='265' href='http://java.sun.com/reference/api/'>
+	http://java.sun.com/reference/api/</a>
+	<dd>Click on J2SE 1.4.2 or 1.5.0</dd></li>
+	<li><a target='265'
+		href='http://www.javaranch.com'>www.javaranch.com</a></li>
+</ul>
+
+<hr>
+<h2>To do</h2>
+<ul>
+	<li>Make some appropriate subdirectory for this lab and go there</li>
+	<li>Look over the Java programs in ~kschmidt/public_html/CS265/Labs/Java</li>
+
+	<table border='1'>
+		<tr><td colspan='2'><center><b>Simple First Programs</b></center></td></tr>
+		<tr>
+			<td><tt>first.java</tt></td>
+			<td>An example first program</tt></td>
+		</tr>
+		<tr>
+			<td><tt>args.java</tt></td>
+			<td>Looking at command-line args (as strings)</td>
+		</tr>
+		<tr>
+			<td><tt>intArgs.java</tt></td>
+			<td>Looking at command-line args (as ints)</td>
+		</tr>
+		<tr>
+			<td><tt>stdinIoRecords.java</tt> <br>
+				<tt>stdinIoTokens.java</tt> </td>
+			<td>Simple I/O</td>
+		</tr>
+		<tr><td colspan='2'><center><b>Arguments</b></center></td></tr>
+		<tr>
+			<td><tt>byRef.java</tt></td>
+			<td>Explores passing by reference</td>
+		<tr>
+			<td><tt>byVal.java</tt></td>
+			<td>Explores passing by value</td>
+		</tr>
+		<tr><td colspan='2'><center><b>Arrays</b></center></td></tr>
+		<tr>
+			<td><tt>Arr.java</tt></td>
+			<td>demonstrates using primitive arrays</td>
+		</tr>
+		<tr><td colspan='2'><center><b>File Input</b></center></td></tr>
+		<tr>
+			<td><tt>fileIoTokens.java</tt></td>
+			<td>just reading tokens from a file</td>
+		<tr>
+			<td><tt>fileIoRecTok.java</tt></td>
+			<td>Reads files line/token at a time</td>
+		</tr>
+		<tr><td colspan='2'><center><b>Enum</b></center></td></tr>
+		<tr>
+			<td><tt>pokerSuit.java</tt></td>
+			<td>example of enum</td>
+		</tr>
+		<tr>
+			<td><tt>pokerClient.java</tt></td>
+			<td>Driver for pokerSuit</td>
+		</tr>
+		<tr><td colspan='2'><center><b>Inheritance</b></center></td></tr>
+		<tr>
+			<td><tt>vehicle.java</tt></td>
+			<td>base class</td>
+		<tr>
+			<td><tt>bike.java</tt></td>
+			<td>Derived from vehicle</td>
+		</tr>
+		<tr><td colspan='2'><center><b>Interfaces</b></center></td></tr>
+		<tr>
+			<td><tt>internalCombustion.java</tt></td>
+			<td>Interface</td>
+		<tr>
+			<td><tt>motorcycle.java</tt></td>
+			<td>extends bike, implements internal Combustion</td>
+		</tr>
+	</table>
+
+</ul>
+
+<hr>
+<h2>Problems:</h2>
+
+<h3>Some little things from JavaRanch, and Ant</h3>
+<p>Go to <a target='265ref' href='http://www.javaranch.com'>
+	JavaRanch</a>, click on the Cattle Drive, do numbers 1(a), 2, 3, and 8
+(labeled <tt>prob1</tt> - <tt>prob4</tt>, respectively).  Call the files
+<tt><b>prob<i>i</i>.java</b></tt>, where <tt><b><i>i</i></b></tt> is the
+problem #.</p>
+
+<!-- Moved to week 8, KS, 11/07 -->
+<p>Create a <tt>build.xml</tt> (see the slides on <b>ant</b>) that has
+targets w/the targets <tt>prob1</tt> - <tt>prob4</tt>.  Each target will
+build one of the problems, from above, and run it (w/some appropriate
+command-line args to run your programs).</p>
+
+
+<!--
+<h3>Treasure Hunt</h3>
+
+<p>A robot and a treasure are located somewhere
+in a room (which is empty except for the robot and the treasure). The floor of
+the room is covered with square tiles, so you can think of the room as having a
+giant piece of graph paper covering its floor. The robot and the treasure each
+occupy a different tile in this grid, and you know the location of each one.
+The locations are specified using (x,y) coordinates. <br>
+Your job is to write a program that will take the coordinates of the robot and
+the treasure and then determine and provide directions to the robot for how to
+travel to the treasure. You can assume that the robot begins by facing in the
+positive Y direction. Your output will say something like &quot;go forward 3
+tiles, turn left, go forward 4 tiles&quot;. You enter the coordinates using
+command-line arguments.</p>
+
+<p>So, your program has to do the following: </p>
+
+<ol start=1 type=a>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list .5in'>read 4 parameters from the command line, in the following order: </li>
+ <ol start=1 type=1>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l0 level2 lfo6;tab-stops:list 1.0in'>x location of the robot</li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l0 level2 lfo6;tab-stops:list 1.0in'>y location of the robot</li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l0 level2 lfo6;tab-stops:list 1.0in'>x location of the treasure</li>
+  <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+      auto;mso-list:l0 level2 lfo6;tab-stops:list 1.0in'>y location of the treasure</li>
+ </ol>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list .5in'>echo the input (i.e., output it on the screen); </li>
+ <li class=MsoNormal style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;
+     mso-list:l0 level1 lfo6;tab-stops:list .5in'>determine and output directions for the robot to travel to the
+     coin.</li>
+</ol>
+
+<p>You can assume that the input values are all whole numbers. Your
+	calculated outputs should be whole numbers in terms of the number of tiles
+	to travel in each direction.</p>
+
+<p><font size='+1'>Q14 Upload your implementation as part of the assignment.
+	Make sure you test it several times with different inputs.
+-->
+
+<hr width='100%'>
+<h3>Submission</h3>
+
+<ul>
+	<li><tt><b>prob1.java</b></tt></li>
+	<li><tt><b>prob2.java</b></tt></li>
+	<li><tt><b>prob3.java</b></tt></li>
+	<li><tt><b>prob4.java</b></tt></li>
+	<li><tt><b>build.xml</b></tt></li>
+</ul>
+
+</body>
+</html>

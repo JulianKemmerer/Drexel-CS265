@@ -1,0 +1,5 @@
+Testsuite: MoneyTest
+Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.012 sec
+
+Testcase: testEquals took 0.01 sec
+Testcase: testAdd took 0 sec

@@ -1,0 +1,9 @@
+
+{
+	for( i=2; i<=NF; ++i )
+		if( $i<10 )
+		{
+			print $0
+			break
+		}
+}

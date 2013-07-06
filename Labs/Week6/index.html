@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta content="Kurt Schmidt &amp; Vera Zaychik" name="Author">
+	<title>Lab - Design and Implementation</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1>Lab - Design and Implementation</h1>
+
+<p>Questions will be denoted with a <b><font size="=1">Q</font></b>.</p>
+
+<ul>
+	<li>Make some appropriate subdirectory for this lab and go there</li>
+	<li>Copy (recursively) all the files from
+	~kschmidt/public_html/CS265/Labs/Design/ to your lab directory (note that
+	there is a symlink to a directory containing the C files).</li>
+	</ul>
+
+<h2>The Markov Chain algorithm</h2>
+<ul>
+	<li>We will use a sentinel string, <tt>"\n"</tt> (a single newline):
+	<ul>
+		<li>The very first (2-word) prefix (<tt>State</tt>) to be put into the
+			table will be ("\n", "\n").  What follows is a suffix that would begin
+			a text</li>
+		<ul>
+			<li>Note, there may be more than one suffix here, if we modified the
+				program to read several input texts.</li>
+		</ul>
+		<li>The last <tt>State</tt> in a text will have, as a suffix, "\n"</li>
+		<ul>
+			<li>A "this is a fine place to stop" kind of token.</li>
+			<li>Again, if multiple texts are input, there might be several good
+				places to end a text in the table</li>
+		</ul>
+	</ul>
+</ul>
+
+<h2>The C implementation</h2>
+
+<ul>
+	<li>Look at markov.c</li>
+	<li>Look at the 2 structs, and the array of <tt>State</tt> pointers,
+		<tt>statetab</tt>:</li>
+	<ul>
+		</ul><h3><tt>statetab</tt></h3><ul>
+		<li>The statetab *is* your hash table.</li>
+		<li>A table of pointers to linked lists (a table of linked lists)</li>
+		<li>The linked-lists contain entries</li>
+		<li>Note, initially table is all NULL</li>
+		</ul><h3><tt>struct State</tt></h3><ul>
+		<li>The "buckets" are just linked-lists of <tt>State</tt>s</li>
+		<li>Each entry (prefix) is stored in a <tt>State</tt> object</li>
+		<li>Each entry (prefix) is stored exactly once in the table</li>
+		</ul><h3><tt>struct Suffix</tt></h3><ul>
+		<li>Each <tt>State</tt> is associated with one or more <i>suffices</i>
+		<li>These suffices are stored in a linked-list.  This list is a State's
+			<i>satellite data</i>; the <tt>State</tt> (prefix) is they key, the
+			list is the associated data</li>
+		<li><tt>Suffix</tt> is a node in this list; it stores a single
+			suffix</li>
+	</ul>
+
+</ul><h3>Table Functions</h3><ul>
+	<p><font size='+1'>Q1  What is the difference between <tt>add()</tt> and
+	<tt>addSuffix</tt>?</font></p>
+
+	<p><font size='+1'>Q2  What does <tt>lookup</tt> do?  Which function(s)
+		call <tt>lookup</tt>?</font></p>
+
+</ul><h3>Strings</h3><ul>
+	<li>Note that space is allocated for each string (single word) exactly
+		once</li>
+	<li>Everybody maintains pointers to these things.</li>
+	<li>Consider, as input:</li>
+		<blockquote><tt>It's a new dawn</tt></blockquote>
+	<li>Draw the table, much as in the notes, after <tt>build</tt> is called
+		w/this input</li>
+	<p><font size='+1'>Q3  Include the table in your lab sheet.  How many
+		references (pointers) are there to each string:
+		<ol type='a'>
+			<li>"It's"</li>
+			<li>"a"</li>
+			<li>"new"</li>
+			<li>"dawn"</li>
+		</ol>?</font></p>
+	<p><font size='+1'>Q4 What are the advantages of this?</font></p>
+	<p><font size='+1'>Q5 What are the drawbacks?</font></p>
+	<li>Does the program explicitly give this memory back?
+	<li>Wherever we have more than one reference to heap memory we have a
+		problem
+	<p><font size='+1'>Q6 Write a function to clean up <tt>statetab</tt> when
+		we're all done, give the memory back (don't spend a lot of time
+		here).  In-line your function here, in the lab-sheet.</font></p>
+	<p><font size='+1'>Q7 Does your function work properly?  What difficulties
+		did you have?</font></p>
+	<p><font size='+1'>Q8 Take a step back from the table.  How could you make
+		sure that each string was freed exactly once?</font></p>
+</ul>
+
+<h2>The C++ Implementation</h2>
+<ul>
+	<li>Look at markov.cpp</li>
+	<p><font size='+1'>Q9 How are the prefixes stored?  Why not use a
+		vector?</font></p>
+	<p><font size='+1'>Q10 What serves as our dictionary (replaces our hash
+		table)?</font></p>
+	<p><font size='+1'>Q11 How is the satellite data (list of suffices)
+		stored?</font></p>
+	<p><font size='+1'>Q12 Are there any advantages to this implementation
+		over the C implementation?  What are they?</font></p>
+	<p><font size='+1'>Q13 Are there any drawbacks?</font></p>
+</ul>
+
+<h2>The Python Implementation</h2>
+<ul>
+	<li>Look at markov.py</li>
+	<p><font size='+1'>Q14 How are the prefixes stored?</font></p>
+	<p><font size='+1'>Q15 What serves as our dictionary (replaces our hash
+		table)?</font></p>
+	<p><font size='+1'>Q16 How is the satellite data (list of suffices)
+		stored?</font></p>
+	<p><font size='+1'>Q17 Are there any advantages to this implementation
+		over the C++ implementation?  What are they?</font></p>
+	<p><font size='+1'>Q18 Are there any drawbacks?</font></p>
+</ul>
+
+<h2>Strictly for Fun</h2>
+
+<p>You don't need to submit anything here.</p>
+
+<p>See the <tt>fortune</tt> directory (do a <tt>man</tt>; it moves around a
+little bit).  It's usually somewhere around
+<tt>/usr/share/games/fortune</tt>.</p>
+
+<p>Modify one of the above implementations so, instead of an entire file
+being a "story" (a start and stop place), each entry in the fortunes files
+(separated by a %) is a new "story".</p>
+
+<!-- We don't do Perl anymore
+<h2>The Perl Implementation</h2>
+<ul>
+	<li>Look at markov.pl</li>
+	<p><font size='+1'>Q14 How are the prefixes stored?</font></p>
+	<p><font size='+1'>Q15 What serves as our dictionary (replaces our hash
+		table)?</font></p>
+	<p><font size='+1'>Q16 How is the satellite data (list of suffices)
+		stored?</font></p>
+
+<p><font size='+1'>Q17 Which implementation makes is easiest for you to
+	understand what how a Markov chain is built/used?  Why?  (There isn't a
+	single correct answer here.)
+
+</ul>
+-->
+
+</ul>
+</body>
+</html>

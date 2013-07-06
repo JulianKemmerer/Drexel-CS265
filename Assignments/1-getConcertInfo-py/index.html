@@ -1,0 +1,107 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+  <meta name="Author" content="Jeremy R. Johnson">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../../courseInfo.js"></script>
+	<script language="JavaScript" src="../../../Scripts/courseFormat.js"></script>
+  <title>CS 265 -- Assignment, Python, get concert info</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1>Assignment - get Philly concert info</h1>
+
+<h2>Introduction</h2>
+
+<p>The purpose of this assignment is for students to become familiar with
+writing simple Python scripts, to use built-in containers (data structures),
+and to see how modules can make some daunting tasks fairly simple.</p>
+
+<!--
+<p>You will write a Python program that will look at WXPN's site, <a
+	target='265sample'
+	href='http://www.xpn.org/concerts.php'>http://www.xpn.org/concerts.php</a>,
+and display concert information.</p>
+-->
+<p>You will write a Python program that will look at Camden County Parks's
+site, <a target='sample'
+	href='http://www.ccparks.com/events/eventsall.php'>
+		http://www.ccparks.com/events/eventsall.php</a>,
+and display concert information.</p>
+
+<p>The user interface will have 2 stages:</p>
+<ol>
+	<li>List, in alphabeticl order, all the artists that are in town.</li>
+	<li>Allow the user to choose (menu-style); then display the date(s) and
+		the venue(s) (along w/the artist).</li>
+</ol>
+
+<p>You will, after some input (you decide), bring the user back to the menu,
+which will also have a "quit" option.</p>
+
+<p>Note, an artist may have more than one gig in the area; <i>all</i> of the
+relevant information must be stored.</p>
+
+<p>What I'm thinking (for retrieval purposes) is a dictionary of lists, very
+much as was done in the <a target='sample'
+	href='../Programs/Python/markov.py'>markov.py</a> program.</p>
+
+<p>You might need to use something else to store information for the menu
+you present to the user.</p>
+
+<p>Don't go too nuts w/the parsing.  For this assignment, <b>Chi-lites</b>
+and <b>Chilites</b>, e.g., can be considered as 2 distinct artists.</p>
+
+<h3><tt><b>urllib</b></tt> module - making an HTTP request</h3>
+
+<p>The <tt>urllib</tt> module lets you request a webpage and capture the
+page that is returned.  We're going very simply here; We won't fill in agent
+info, check for an updated page, etc.  Just open a connection, get the file
+down, and parse it.</p>
+
+<p>I have provided an example of this in <a target='sample' href=
+	'../../Programs/Python/getConcertInfo.py'>getConcertInfo.py</a>.  You can
+slurp the entire file down into a single string, or each line as an element
+in a list.  Whichever you prefer for parsing (note: you'll want to look a
+bit more closely at regexps; as presented in earlier examples using
+<tt>awk</tt> or <tt>sed</tt>, a regexp didn't cross a newline.  But they
+can, depending on what you want).</p>
+
+<h2>Some other notes</h2>
+
+<p>While you're working on the parsing bit I would simply pull down the
+page to local disk, and open it from there, to avoid maybe annoying the XPN
+webmasters.  It's only polite, especially since you're not identifying
+yourself.</p>
+
+<p>So, you can open it from Python as you would any other file.  When you're
+ready, just change the <tt>open</tt> to go get the actual file from the Web
+(this returns a file-like object, has the same read methods, etc.)</p>
+
+<hr>
+<h2>What to hand in</h2>
+
+<ul>
+	<li><tt><b>getConcertInfo.py</b></tt> - Your complete Python program</li>
+	<li><tt><b>README</b></tt> <i>(optional)</i> - anything you want/need to
+	tell us</li>
+</ul>
+
+<p>Please note, use the filenames <b>as shown here</b>.  I.e.,
+<tt>README.txt</tt> will <i>not</i> be read before grading.</p>
+
+</body>
+</html>

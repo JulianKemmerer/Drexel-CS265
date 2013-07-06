@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for f in *; do
+newName=${f/$1/$2};
+#echo "$newName";
+if [ "$f" != "$newName" ];then
+mv "$f" "$newName";
+fi
+done
+

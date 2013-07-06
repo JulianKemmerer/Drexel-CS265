@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Hello World"
+
+#if [ -n "$1" ] ; then
+#	if [ $1 \< "Kurt" ] ; then
+#		echo chicken
+#	else
+#		echo elephant
+#	fi
+#fi

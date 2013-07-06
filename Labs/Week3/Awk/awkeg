@@ -1,0 +1,48 @@
+In this assignment you will experiment with the programming language
+AWK.  You will also use the UNIX command sort, and the UNIX pipe
+facility to combine several programs to create new programs.
+
+In the assignment you will process a file containing student names
+and test scores.  Each line of the file will be in the following format:
+
+name  score_1 score_2 ... score_n
+
+Each score will be in the range 0 to 100.
+There can be any number of scores provided they fit on a single line.
+However, each line must have the same number of scores.
+
+1)  Write an AWK program to make sure that each line has the same number
+    of scores.
+
+2)  Write an AWK program to print students names who got a 0 on a test.
+
+3)  Use the UNIX sort command to find the maximum grade on the last test
+    (the final).  You should first determine how many tests were taken.
+    To do this you should sort the lines using the final score as a key.
+    Make sure that you sort this key numerically.  You should use a 
+    secondary key so that students with the same score are listed 
+    alphabetically.  To find the appropriate options to sort use the
+    man command:  "man sort".
+
+4)  Write an AWK program that reads the input file and produces a list
+    of students with their average grade.  Also report the class average.
+
+5)  Combine your program from (4) with sort and another AWK program to
+    find the middle grade (i.e. the student whose grade is such that 
+    half of the grades are higher or equal and half of the grades are lower
+    or equal.  You should use an array to store all names and scores.  At
+    the end you will know how many students there are.
+
+6)  Modify your program from (4) to produce a list of students followed
+    by their grade.  An average score from 90-100 is an A, 80-89 is a B,
+    70-79 is a C, 50-69 is a D, and below 50 is an F.
+
+7)  Write an AWK program that reads the input produced by (6) and reports
+    how many A's, B's, C's, D's, and F's.  You should use an associative
+    array to count the number of students with each grade.
+
+8)  Modify your program in (7) so that a histogram is produced instead of
+    just a count.  That is, your output should be the grade followed by
+    a string of *'s (the number of *'s should equal the number of students
+    with the corresponding grade).  Hint - instead of incrementing the
+    array in (7) concatenate a * to the appropriate entry in the array.

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+	<meta name="Author" content="Vera Zaychik & Kurt Schmidt">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../../courseInfo.js"></script>
+	<script language="JavaScript" src="../../../Scripts/courseFormat.js"></script>
+	<title>Lab - Debugging</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../images/blueTexture.jpeg">
+
+
+<h1>Lab - Debugging</h1>
+
+<p>Okay, just follow along, questions will be denoted with a
+<b><font size="=1">Q</font></b>.</p>
+
+<ul>
+	<li>Make some appropriate subdirectory for this lab and go there</li>
+	<li>Copy ~kschmidt/public_html/CS265/Labs/Dbg to your lab directory</li>
+</ul>
+
+<p>See a short (and still incomplete) <a target='265ref'
+	href='http://www.cs.drexel.edu/~kschmidt/Ref/gdb_reference.html'>GDB quick
+	reference</a></p>
+
+<h3>Setup</h3>
+
+<ul>
+	<li>Make sure core files will be written (for Bash only):
+		<blockquote><tt>ulimit -c unlimited</tt></blockquote>
+	</li>
+	<li>Compile <tt><b>bug3.cc</b></tt> (without debug information)</li>
+		<blockquote><tt>gcc -o bug3 bug3.c</tt></blockquote>
+	</li>
+	<li>Run it w/this input file:
+		<blockquote><tt>bug3 in.bug3</tt></blockquote>
+	</li>
+	<li>It will ask you for a string to search.  Give it one (doesn't matter
+		if it exists in the table)</li>
+</ul>
+
+<p><b><font size="+1">Q 1</font></b>What happened when you ran
+<tt>bug3</tt>?  Use <tt>ls -ot</tt>, see if there are any new files in your
+directory.</p>
+
+<h2>Loading corefile into GDB</h2>
+
+<p>Even if you didn't compile w/the extra debug info, and you <i>don't</i>
+	read the instructions for the given chipset, the debugger can still be
+	useful.  For example, we can use backtrace (bt) to look at the runtime
+	stack, see in which function we were when we dumped:</p>
+
+<ul>
+	<li>Look in the directory, find a file called <tt>core</tt>, or maybe
+		<tt>core.<i>nnnn</i></tt></li>
+	<li>Load the binary and the corefile into the debugger:</li>
+	<blockquote><tt>$ gdb bug3 -c <i>core</i></tt></blockquote>
+	<li>Use GDB's <tt>backtrace</tt> command to see the stack:</li>
+		<blockquote><tt>(gdb) bt</tt></blockquote>
+	<li>This give you a list of calls, on the stack.  The most recent is
+		on the top.</li>
+	<li>Don't leave corefiles lyin' around.  They can get pretty large
+		(look at them).</li>
+</ul>
+
+<p><b><font size="+1">Q 2</font></b> In which function did it bomb?</p>
+
+<h3>Setup</h3>
+
+<p>To run programs in a debugger (and see stuff that looks familiar to you)
+you must compile all files w/the <tt>-g</tt> flag.</p>
+
+<h2>Running programs inside GDB</h2>
+
+<p>Okay, now, use GDB to debug these other programs.</p>
+
+<p><b><font size="+1">Q 3</font></b> For each, below, record what the
+problem was, and you how fixed it.</p></li>
+
+<ol type='a'>
+	<li><tt><b>bug1.c</b></tt> - common bug in C.
+	<li><tt><b>bug2.c</b></tt> - common bug in C.
+	<li><tt><b>bug3.c</b></tt>, when tested with <tt><b>in.bug3</b></tt>
+		as input
+	<li><tt><b>avg.c</b></tt> - example use of assert. 
+	<li>A program that causes a segmentation violation: 
+		<p><tt><b>driverBug.c</b></tt> compiled with
+		<tt><b>quicksortBug.c</b></tt>.
+
+	<p>simple bug in the quicksort program from the text - how would you find
+		it?  What assertions could you put into the code to check that the
+		algorithm was implemented properly?
+
+	<p>To generate the error run <tt>driverBug</tt> with the input
+		<tt><b>in</b></tt>
+</ol>
+
+<p> <tt><b>sort2.c</b></tt> uses qsort to sort an array of strings.  The
+	error comes from passing qsort a function to compare integers rather than
+	integers. </p>
+	
+<p><b><font size="+1">Q 4</font></b> Why can't the compiler catch this?
+	You can uncover the problem by looking at a stack trace from when the
+	program crashed (see the lab on how to do this).
+
+<p><b><font size="+1">Q 5</font></b> What happens if you are using qsort
+	to sort integers and accidently pass the string comparison function?
+
+</body>
+</html>

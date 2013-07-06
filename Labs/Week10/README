@@ -1,0 +1,48 @@
+shuffle.cpp  [filter to randomly shuffle stream of strings]
+
+in.n         [randomly shuffled strings from /usr/share/dict/words of size n]
+ins.n        [sorted strings from /usr/share/dict/words of size n, obtained by
+              sorting in.n - note that the order in words is not the same as
+              the order used by sort]
+
+To generate input files:
+
+$g++ shuffle.c -o shuffle
+$ head -n lines < /usr/share/dict/words | shuffle > in.n  # lines is a number
+
+quicksort.c  [quicksort code from assignment 2]
+quicksort1.c [modified (removed random pivot) quicksort code from assignment 2]
+sort1.c      [filter to sort stream of strings using quicksort - from part 1 of 
+              assignment 2]
+
+To time:
+
+$gcc -o sort1 sort1.c quicksort.c
+$time ./sort1 < in.n > /dev/null
+
+To time sorted data to get Theta(n^2) behavior
+
+$gcc -o sort1 sort1.c quicksort1.c
+$time ./sort1 < ins.n > /dev/null
+
+Integer sorting programs
+
+sorti.c  (time and sort specified number of integers - uses command line arguments)
+quicksorti.c (quicksort modified to sort array of integers)
+
+Example use:
+
+$gcc -o sorti sorti.c quicksorti.c
+%sorti 100  # sort and time an array of size 100  (input array is sorted)
+
+Note that if the number of integers used by sorti is too small the time reported
+will likely be 0  (this is due to the resolution of clock, which is 1/60 second)
+
+Using gcov to count the number of times each line is executed.
+
+$gcc -fprofile-arcs -ftest-coverage sorti.c quicksorti.c -o sorti
+$sorti 10
+$gcov sorti.c
+$gcov quicksorti.c
+
+sortr.c  (time and sort array of integers for a range of input sizes)

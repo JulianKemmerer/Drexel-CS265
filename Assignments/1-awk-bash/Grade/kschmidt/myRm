@@ -1,0 +1,10 @@
+#!/bin/bash
+# myRm - quick dummy script, testing hwrun
+#
+# Kurt Schmidt
+#
+# EDITOR:  tabstop=2, cols=80
+#
+
+echo 'This is myRm!'
+

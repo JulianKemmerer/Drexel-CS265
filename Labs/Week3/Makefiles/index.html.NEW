@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+	<meta name="Author" content="Kurt Schmidt & Vera Zaychik">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Revisit-After" content="90 days">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../courseInfo.js"></script>
+	<script language="JavaScript" src="../Scripts/courseFormat.js"></script>
+	<title>Lab - Make</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../images/blueTexture.jpeg">
+
+
+<h1> Lab - Makefiles </h1>
+
+
+<h2> Setup </h2>
+
+<p> You're going to create a fairly simple makefile that performs some
+basic, common tasks.  Compile a C program.  Run a C program.  Run a Python
+program.  Compile and run a java program.  Check for a README, display it.
+Compare 2 files.  Clean up intermediary files. </p>
+
+<p> Go through the steps below, adding 1 target at a time (and testing!) to
+your makefile. </p>
+
+<p> Create a directory for this lab, then copy the following files from
+<tt><b>~kschmidt/public_html/CS265/Labs/Makefiles</b></tt> : </p>
+
+<ul>
+	<li> <tt>README</tt> </li>
+	<li> <tt>expected.out</tt> </li>
+	<li> <tt>foo.c</tt> </li>
+	<li> <tt>foo.h</tt> </li>
+	<li> <tt>foo.java</tt> </li>
+	<li> <tt>foo.py</tt> </li>
+	<li> <tt>main.c</tt> </li>
+</ul>
+
+<p> You will create a makefile called <tt><b>Makefile</b></tt>, and fill
+that in as follows: </p>
+
+
+<h2> To Do </h2>
+
+<ol>
+	<li> First, at the top of the makefile, define the following variables:
+		<ul>
+			<li> <tt>cc = gcc</tt> </li>
+			<li> <tt>EXE = foo</tt> </li>
+			<li> <tt>JAVAC = javac</tt> </li>
+			<li> <tt>JRE = java</tt> </li>
+			<li> <tt>PAGER = less</tt> </li>
+			<li> <tt>TEST_OUT = test.out</tt> </li>
+			<li> <tt>EXP_OUT = expected.out</tt> </li>
+		</ul>
+	</li>
+
+	<li> <p> Create a target called <tt><b>foo.o</b></tt> .  It will depend
+	upon the files <tt>foo.c</tt> and <tt>foo.h</tt> .  Here is the command
+	that would do it: </p>
+		<blockquote><tt>$(cc) -c foo.c</tt></blockquote>
+	</li>
+
+	<li> <p> Create a target called <tt><b>main.o</b></tt> .  It will depend
+	upon the files <tt>main.c</tt> and <tt>foo.h</tt> .  Here is the command
+	that would do it: </p>
+		<blockquote><tt>$(cc) -c main.c</tt></blockquote>
+	</li>
+
+	<li> <p> Now we want to make the executable from those object files.
+	Create a target called <tt><b>$(EXE)</b></tt>, which would depend upon the
+	files <tt>foo.o</tt> and <tt>main.o</tt> .  Here is the command
+	that would do it: </p>
+		<blockquote><tt>$(cc) -o$(EXE) main.o foo.o</tt></blockquote>
+	
+		<p> To test this file, you would type <tt>make foo</tt> .  <nobr><tt>make
+			$(EXE)</tt></nobr> wouldn't work. </p>
+	</li>
+
+	<li> <p> Now we want to run the program.  Create a target called
+	<tt><b>run-c</b></tt>, which would depend upon the file <tt>$(EXE)</tt> .
+	Here is the command that would do it: </p>
+		<blockquote><tt>./$(EXE)</tt></blockquote>
+	</li>
+
+	<li> Now, add a target called <tt><b>run-py</b></tt> that simply runs the
+	<tt>foo.py</tt>, in the current directory.  It would, of course, depend on
+	<tt>foo.py</tt> . </li>
+
+	<li> <p>Create a target called <tt><b>read</b></tt> that checks for a file
+	called <tt>README</tt> ; if it exists, display it using $(PAGER), from
+	above. </p>
+
+	<p> Note that you don't want to list any dependencies here.  We don't want
+	make to yell at us if <tt>README</tt> doesn't exist; we want to check,
+	quietly. </p>
+
+	<li> <p> Create a target called <tt><b>foo.class</b></tt> .  It will
+	depend upon the file <tt>foo.java</tt> .  Here is the command that would
+	do it: </p>
+		<blockquote><tt>$(JAVAC) foo.java</tt></blockquote>
+	</li>
+
+	<li> <p> Create a target called <tt><b>run-java</b></tt> .  It will depend
+	upon the file <tt>foo.class</tt> .  Here is the command that would do it:
+	</p>
+		<blockquote><tt>$(JRE) foo</tt></blockquote>
+	</li>
+
+	<li> <p> Create a target called <tt><b>$(TEST_OUT)</b></tt> , that will
+	run your java program, but redirect the output to <tt>$(TEST_OUT)</tt>.
+	But for the redirection, this target will look very much like the previous
+	one. </p> </li>
+
+	<li> <p> Create a target called <tt><b>test-java</b></tt> .  We want to
+	compare your output w/the expected output.  It'll depend on the 2 output
+	files, <tt>$(TEST_OUT)</tt> and <tt>$(EXP_OUT)</tt> .  Here're the bash
+	lines that would do it: </p>
+	<blockquote><tt>
+<pre>-@if diff $(TEST_OUT) $(EXP_OUT) &amp;&gt; /dev/null ; then \
+  echo "Passed!" ; \
+else \
+  echo "Not the same!" ; \
+fi</pre>
+	</tt></blockquote>
+	</li>
+
+	<li> <p> Create a target called <tt><b>clean</b></tt> that cleans up all
+	generated files (the object files, the class file, the executable, and the
+	test.out file). </p> </li>
+
+	<li> <p> Finally, note that <tt><b>clean</b></tt> <tt><b>run-py</b></tt>
+	<tt><b>run-c</b></tt>  <tt><b>read</b></tt> <tt><b>run-java</b></tt>
+	<tt><b>save-java</b></tt> and <tt><b>test-java</b></tt> are all phony
+	targets.  Note this, near the top, under the variables. </p> </li>
+
+</ul>
+
+<p> Submit this Makefile along w/the other files for the lab. </p>
+
+</body></html>

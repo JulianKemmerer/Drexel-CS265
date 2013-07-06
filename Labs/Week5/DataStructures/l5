@@ -1,0 +1,89 @@
+Q1:
+i. A list is a set of items with a defined order from one item to another
+ii. A stack is list where items that are added are done so in such a way
+that the last item added will be the first item removed
+iii. A queue is a list where items that are added are done so in such a way
+that the last item added is the last item to be removed
+iv. A dictionary is a set of two lists such that each item from second list
+(value) corresponds to one or more items from the first list (key).
+
+Q2:
+log2(n) times. The binary search will split the list in half and choose the half
+that contains the desired value. The process will then repeat until the list
+can no longer be split in half.
+
+Q3:
+n times. If the desired element is at the end of the array, a linear search
+will need to cycle through all of the array elements.
+
+Q4:
+If the list is unsorted, there would be no way for the binary search to
+determine which half of the list to continue searching through.
+If both list are sorted, consider the list of integers 1 through 10 begining
+a search starting at 1. A binary search for the number 2 would be slower
+than a linear search for the number 2.
+
+Q5:
+(Sub arrays are denotes by more than one space between numbers)
+*84* 37 93 82 98 27 63 73 93 27 75 55 45 8
+
+*37* 82 27 63 73 27 75 55 45 8                   *84* 93 98 93
+
+*27* 27 8        *37* 82 63 73 75 55 45              84 *93* 98 93
+
+8      27 27         37          *82* 63 73 75 55 45              84
+*93* 98 93
+
+8      27 27         37         *63* 73 75 55 45         82
+84        93 93        98
+
+8      27 27         37        *55* 45           63        *73* 75
+82                   84        93 93        98
+  
+8      27 27         37        45      55           63        73     75
+82                   84        93 93        98
+ 
+Final List:
+8 27 27 37 45 55 63 73 75 82 84 93 93 98
+
+Q6:
+3 24 06
+
+Q7:
+[13,[28,[24,none]]]
+
+Q8:
+buffer is initialized to "on the footsteps of dawn".
+s is a pointer to the char array buffer
+s is added on to "... who's never ever been born"
+since s, points to buffer this is actually happening to the buffer variable
+buffer is then set to "on the footsteps of dawn"
+s is this set to a pointer to empty memory (no longer associated with
+buffer)
+buffer is copied to s
+s is added to "... who's never ever been born" yeilding the two phrases
+buffer is still only "on the footsteps of dawn"
+
+Q9:
+Hash   Entries:
+3      [Bob,38],[Cos,86]
+4      [Vera,99],[Nash,11],[Kate,28],[Jaga,24]
+5      [Jesse,78]
+
+Q10:
+int find(char *name, int *value)
+{
+  int h = hash(name);
+  entry *p, *q;
+  p = table[h];
+  while(p!=NULL)
+  {
+    if(p->key == name)
+    {
+      *value = p->val;
+      return 1;
+    }
+  }
+  return 0;
+}
+

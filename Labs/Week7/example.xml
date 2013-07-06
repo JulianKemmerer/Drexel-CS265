@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Feb '06
+
+	Mandrake Linux 10.2
+	Ant
+
+	As noted below, this may be a little silly, and should probably be done w/
+	filesets, but motivated by stuff at:
+		http://blog.ideoplex.com/software/java/ (though the people there
+		probably wouldnt' want to be associated w/this file)
+-->
+
+<project>
+	<description>
+		Just builds/runs some of the examples here in this directory.
+	</description>
+
+  <target name="intArgs" depends='intArgs.class'>
+		<java classname='intArgs'>
+			<arg value='24'/>
+			<arg value='3'/>
+		</java>
+	</target>
+
+  <target name="intArgs.class">
+    <javac srcdir='./' includes='intArgs.java'/>
+  </target>
+
+  <target name="args" depends='args.class'>
+		<java classname='args'>
+			<arg value='a'/>
+			<arg value='one arg'/>
+			<arg value='another arg'/>
+		</java>
+	</target>
+
+  <target name="args.class">
+    <javac srcdir='./' includes='args.java'/>
+  </target>
+
+  <target name="clean">
+    <delete>
+			<fileset dir="./">
+				<include name='*.class'/>
+			</fileset>
+		</delete>
+  </target>
+</project>

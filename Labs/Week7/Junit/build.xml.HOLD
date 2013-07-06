@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Aug '06
+
+	gentoo 
+	Ant
+-->
+
+<project default='test' basedir='.'>
+	<description>
+		'An example that uses JUnit to do unit testing test as we build'
+	</description>
+
+	<!-- set global properties for this build -->
+	<property name='src' value='.' />
+		<!-- JUnit output.  Can be 'plain', 'xml', or 'brief' -->
+	<property name='formatter' value='plain' />
+
+	<target name='init'>
+			<!-- Create the time stamp (properties DSTAMP, TSTAMP, & TODAY) -->
+    <tstamp/>
+			<!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}" />
+  </target>
+
+  <target name='compile' depends='init'>
+		<!-- Compile the java code from ${src} -->
+		<javac srcdir='${src}' />
+  </target>
+
+	<target name='test' depends='compile'>
+		<junit>
+			<formatter type='${formatter}' />
+			<test name='MoneyTest'/>
+		</junit>
+	</target>
+
+  <target name='clean'>
+		<delete quiet='true'>
+			<fileset dir='${src}'>
+				<include name='*.class' />
+				<include name='**/*~' />
+				<include name='TEST*' />
+			</fileset>
+		</delete>
+  </target>
+</project>

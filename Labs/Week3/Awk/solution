@@ -1,0 +1,130 @@
+MCS360 Programming Languages
+Instructor:  Jeremy Johnson
+Solution to Assignment 1
+
+Input Data
+
+john 83 94 77
+fred 66 99 88
+sue 100 92 98
+ralph 33 58 79
+jim 75 75 77
+nancy 30 70 90
+anna 93 100 97
+sam 52 87 69
+lisa 22 99 77
+
+1)
+
+NR == 1 { cols = NF; }
+NF != cols { printf "line %d has incorrect number of fields = %d\n", NR, NF; }
+
+2)
+
+{ for (i=2;i<=NF;i++) 
+    if ($i == 0) 
+      printf "%s got zero on test %d\n", $1,i; 
+}
+
+3)
+
+fourier% sort -rn +3 -4 +0d -1 scores
+
+sue 100 92 98
+anna 93 100 97
+nancy 30 70 90
+fred 66 99 88
+ralph 33 58 79
+jim 75 75 77
+john 83 94 77
+lisa 22 99 77
+sam 52 87 69
+
+4)
+
+BEGIN { classtotal = 0;  numexams = 0; }
+      { total = 0;  
+        for (i=2;i<=NF;i++) 
+          {
+          numexams++;
+          total = total + $i; 
+          }
+        classtotal = classtotal + total;  print $1, total/(NF-1); }
+END   { print "Class average = ", classtotal/numexams; }
+
+john 84.6667
+fred 84.3333
+sue 96.6667
+ralph 56.6667
+jim 75.6667
+nancy 63.3333
+anna 96.6667
+sam 69.3333
+lisa 66
+Class average =  77.037
+
+5)
+
+% awk -f a5a.awk scores | sort -rn +1 -2 | awk -f a5b.awk
+
+the middle grade = grade[5] = 75 was obtained by jim
+
+5a)
+
+      { total = 0;  
+        for (i=2;i<=NF;i++) 
+          total = total + $i; 
+        print $1, total/(NF-1); }
+
+
+5b)
+
+{ name[NR] = $1; grade[NR]= $2; }
+END { middle = int(NR/2) +1 ;  
+printf "the middle grade = grade[%d] = %d ", middle, grade[middle];
+printf "was obtained by %s\n",name[middle]; }
+
+6)
+
+      { total = 0;  
+        for (i=2;i<=NF;i++) 
+          total = total + $i; 
+        avg = total/(NF-1);
+        if (avg >= 90) grade = "A";
+        else  if (avg >= 80) grade = "B";
+        else  if (avg >= 70) grade = "C";
+        else  if (avg >= 50) grade = "D";
+        else  grade = "F";
+        print $1, grade; }
+
+
+john B
+fred B
+sue A
+ralph D
+jim C
+nancy D
+anna A
+sam D
+lisa D
+
+7)
+
+{ grade[$2]++; }
+END { for (i in grade) printf "Number of %s's = %d\n",i,grade[i]; }
+
+Number of A's = 2
+Number of B's = 2
+Number of C's = 1
+Number of D's = 4
+
+
+8)
+
+{ grade[$2] = grade[$2] "*"; }
+END { for (i in grade) printf "%s:  %s\n",i,grade[i]; }
+
+A:  **
+B:  **
+C:  *
+D:  ****

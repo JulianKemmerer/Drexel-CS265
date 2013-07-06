@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+	<meta name="Author" content="Vera Zaychik & Kurt Schmidt">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../courseInfo.js"></script>
+	<script language="JavaScript" src="../Scripts/courseFormat.js"></script>
+	<title>Data Structures and Algorithms</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1> Data Structures and Algorithms </h1>
+
+<p> Okay, just follow along, questions will be denoted with a
+<b><font size="=1">Q</font></b>. </p>
+
+<p> The directory for this lab is
+<tt>~kschmidt/public_html/CS265/Labs/DataStructures/</tt> </p>
+
+<h2> Abstract Data Types </h2>
+
+<p> An <i>abstract data type</i> (ADT) is really just a description about the
+behavior of a particular type, without any mention of implementation
+details.  E.g., a stack can be implemented many ways, but its behavior
+doesn't change. </p>
+
+<p> <b><font size="+1">Q 1</font></b> Describe each of the following
+ADTs: </p>
+	<ol type='i'>
+		<li> List </li>
+		<li> Stack </li>
+		<li> Queue </li>
+		<li> Dictionary (Map) </li>
+	</ol>
+
+<h2> Searching/Analysis </h2>
+
+<p> <b><font size="+1">Q 2</font></b> Given a sorted array with <tt>n</tt>
+items, how many times (at most) will the <b>binary search</b> compare
+elements?  Explain your answer. </p>
+
+<p> <b><font size="+1">Q 3</font></b> Given an array with <tt>n</tt>
+items, how many times (at most) will the <b>linear search</b> compare
+elements?  Explain your answer. </p>
+
+<p> <b><font size="+1">Q 4</font></b> Given an example when using linear
+search would be preferable over the binary search. </p>
+
+
+<h2> Sorting </h2>
+
+<p> <b><font size="+1">Q 5</font></b> Show the effect of the quicksort, from
+the lecture notes, on the following array (always choose the left-most
+element in a sub-array as the pivot).  Show the array at the beginning of
+each level of calls.  Mark the pivot of each sub-array. </p>
+
+<blockquote><tt>*84* 37 93 82 98 27 63 73 93 27 75 55 45 8</tt></blockquote>
+
+<h2> Pointers & References </h2>
+
+<p> <b><font size="+1">Q 6</font></b> See the file <tt>d1.c</tt> from the lab
+directory.  Display the list that's built. </p>
+
+<p> <b><font size="+1">Q 7</font></b> See the file <tt>ll.py</tt> from
+the lab directory.  Display the list that's built. </p>
+
+<p> <b><font size="+1">Q 8</font></b> Compile and run the file
+<tt>ptrs.c</tt> from the lab directory.  Why are the 2 sets of output
+different?  What's going on there? </p>
+
+<p> <b><font size="+1">Q 9</font></b> See the file <tt>hash.c</tt> from the
+lab directory.  Display the resulting table. </p>
+
+<p> <b><font size="+1">Q 10</font></b> From the table above, write a function
+called <tt>find</tt>, that takes a key and a reference to an integer, fills
+in the reference w/the appropriate value (if found), and returns <tt>1</tt>
+(true).  If the key is <i>not</i> found, return <tt>0</tt> (false).  You may
+assume that p_ans already points to a valid location.  So: </p>
+
+	<blockquote><tt>int find( char *key, int *p_ans );</tt></blockquote>
+
+<p> Can be called like this: </p>
+
+	<blockquote><tt>
+<pre>char *name = "Bob";
+int data;
+if( find( name, &amp;data ))
+   printf( "Found %s.  (S)he's %i\n\n", name, data );
+else
+   printf( "\nCouldn't find %s\n\n", name );</pre>
+	</tt></blockquote>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<atem http-equiv="Content-Language" content="en-us">
+	<atem http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<atem content="Kurt Schmidt &amp; Vera Zaychik" name="Author">
+	<title>Lab 2 - Shell Scripting (Bash)</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1> Lab 2 - bash scripts, more utilities </h1>
+
+<p> Okay, just follow along, questions will be denoted with a
+<b><font size="=1">Q</font></b>.  Fill in answers in a text file called
+<tt>lab2</tt>. </p>
+
+<ul>
+	<li> Make some appropriate subdirectory for this lab and go there </li>
+	<li> Copy ~kschmidt/public_html/CS265/Labs/Bash/lab.tgz to your lab
+		directory and unzip/untar it </li>
+	<li> Look at (and run) eg.bash.  Many examples in there, of simple
+		utilities.  We'll get to control structures in a little bit </li>
+</ul>
+
+<h2> Some more utilities: </h2>
+
+<h3> find </h3>
+<ul>
+	<li> Type <tt>pushd ~/</tt> to go to your home directory </li>
+	<li> type <tt>find . -type f -mtime -2 -print</tt>
+		<p> <b><font size="+1">Q 1</font></b>: What is the output? </p>
+	</li>
+
+	<li> Create a subdirectory w/some files:
+		<ul>
+			<li> <tt>$ <b>mkdir tmp</b></tt> </li>
+			<li> <tt>$ <b>touch tmp/gotMe.bash</b></tt> </li>
+		</ul>
+	</li>
+
+	<li> 
+	<p> <b><font size="+1">Q 2</font></b>: What would the find command be
+	to find all files that end in <tt>.bash</tt>? </p> </li>
+
+	<li> Try it
+		<p> <b><font size="+1">Q 3</font></b>: What is the output? </p>
+	</li>
+
+	<li> Clean up that tmp directory </li>
+	<li> type <tt>popd</tt> to return to your lab directory </li>
+</ul>
+
+<h3> wc </h3>
+<ul>
+	<li> Use <tt>wc</tt> to find the number of characters, words, and lines
+		in <tt>breadIsDangerous.txt</tt>
+		<p> <b><font size="+1">Q 4</font></b>: What were the results? </p>
+		<p> <b><font size="+1">Q 5</font></b>: How could you use grep, wc (with
+		the -l option), and a pipe to find how many lines contain the string
+		"the"? </p>
+	</li>
+</ul>
+
+<h3> aspell </h3>
+
+<ul>
+	<li> Look at <tt>spellExample</tt> </li>
+	<li> type <tt>aspell -c spellExample</tt>, follow the prompts.
+	<li> Do a listing of the directory
+		<p> <b><font size="+1">Q 6</font></b>: What is different? </p>
+	</li>
+	<li> Look at <tt>spellExample</tt> again </li>
+	<li> type <tt>echo "An extra line" &gt;&gt; spellExample</tt> </li>
+</ul>
+
+<h3> diff </h3>
+
+<ul>
+	<li> type <tt>diff spellExample spellExample.bak</tt>
+		<p> <b><font size="+1">Q 7</font></b>: Explain the output </p>
+	</li>
+	<li> type <tt>diff spellExample spellExample</tt>
+		<p> <b><font size="+1">Q 8</font></b>: What did you see this time? </p>
+	</li>
+</ul>
+
+<h2> Using the return value </h2>
+
+<ul>
+	<li> type <tt>grep dough breadIsDangerous.txt</tt>
+	<li> type <tt>echo $?</tt>
+		<p> <b><font size="+1">Q 9</font></b>: What do you see? </p>
+	</li>
+	<li> type <tt>grep uniqueString breadIsDangerous.txt</tt> </li>
+	<li> type <tt>echo $?</tt>
+		<p> <b><font size="+1">Q 10</font></b>: What do you see? </p>
+	</li>
+</ul>
+
+<h2> Scripting </h2>
+
+<ul>
+	<li> Take a look again at args.bash, eg.bash, and rv.bash </li>
+	<li> Run them, and understand each step of the way </li>
+	<li> Ask me if you don't </li>
+	<li> Write a script called <tt>count.bash</tt> that, for each file in the
+		working directory, prints the filename, the # of lines, and the # of
+		words to stdout, like this:
+		<blockquote><tt>breadIsDangerous.txt 73 431
+		<br>spellExample 5 21</tt></blockquote>
+		Do <b>not</b> use <tt>find</tt>
+	</li>
+</ul>
+
+<p> <b><font size="+1">Q 11</font></b>:  Upload <tt>count.bash</tt> </p>
+
+<ul>
+	<li> Write a shell script that accepts two file extensions as command line
+		arguments and renames all files with the first extension within the
+		current working directory to have the second extension instead. The
+		script should print out error messages as is appropriate if there is any
+		problem with the command line arguments. Test the script with a range of
+		different parameters, including incorrect parameters or missing
+		parameters.<br>
+		<b>hint:</b>  See <b>Parameter Expansion</b> in the bash man or info
+		page. </li>
+</ul>
+
+<p> <b><font size="+1">Q 12</font></b>:  Call this script
+	<tt>reextend</tt>, and upload it w/your lab. </p>
+
+</body>
+</html>

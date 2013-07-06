@@ -1,0 +1,55 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta name="Author" content="Kurt Schmidt">
+	<script language="JavaScript" src="../Scripts/courseFormat.js"></script>
+	<title>Lab 1.3 - filters in Unix</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/spiral_notebook.gif">
+
+<font size="+2">
+
+<ul>
+
+<h1>Lab 1.3 - filters in Unix</h1>
+
+<p>Until we get a class site, please look at <a target='_blank' href=
+	http://www.cs.drexel.edu/~jjohnson/2004-05/winter/cs265/lectures/lec1.html>
+	Prof. Johnson's notes for lecture 1</a></p>
+
+<p>Copy ~kschmidt/CS265/Labs/1.3/lab.tgz to your directory, unzip/tar it.</p>
+
+<h2>Some filters</h2>
+
+<dl>
+	<dt>wc [-c] [-w] [-l] <i>file</i></dt>
+	<dd>word count.  Counts the # of characters, words, or lines in
+	<i>file</i></dd>
+
+	<dt>sort [-n] [-r] [-k <i>start [, end]</i>] <i>file</i></dt>
+	<dd>sorts input lexigraphically; -n numerically, -r reverse order, 
+	-k uses column(s) <i>start..end</i></dd>
+	
+	<dt>grep [-E] <i>regexp</i> <i>file(s)</i></dt>
+	<dd>Searches for regular expressions (-E extended regular expressions) in
+	<i>files</i></dd>
+
+	<dt>tr [-d] <i>set1</i> [<i>set2</i>] <i>file(s)</i></dt>
+	<dd>translate - translates characters in <i>set1</i> to corresponding
+	character in <i>set2</i>, or -d deletes characters in <i>set1</i></dd>
+
+	<dt>awk <i>program</i> <i>file(s)</i></dt>
+	<dd>A full programming language, acts on each line of <i>file(s)</i> in
+	order</dd>
+</dl>
+
+
+</ul>
+
+</body>
+
+</html>

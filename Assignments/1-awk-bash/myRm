@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#Trash variable directory exists?
+if [ ! -e "$TRASH" ]; then
+	TRASH=""$HOME"/.trash/";
+	if [ ! -e "$TRASH" ]; then
+		mkdir "$TRASH";
+	fi
+	echo "Default trash directory used: "$TRASH"";
+fi
+
+#If there are files in this directory
+if [ -n "$(\ls -A "$TRASH")" ]; then
+	echo "Found old files.";
+	#if files modified older than 48 hours is not empty
+	if [ -n "$(find . -mtime +1 | tr '\n' ' '; echo)" ]; then
+		echo "Removing files...";
+		rm "$(find . -mtime +1 | tr '\n' ' '; echo)";
+	fi
+fi
+
+#Loop through each argument and check it exists
+goodPaths=();
+for arg in $*; do
+	#Exists?
+	if [ -e "$arg" ] ; then
+		#Append arg to included in tar
+		tmpPath=$(readlink -f "$arg"); 
+		echo "Safely removing: "$tmpPath""
+		goodPaths=( ${goodPaths[@]-} $(echo "$tmpPath"));
+	else
+		echo ""$arg" does not exist";
+	fi
+done
+
+#If there is something to remove
+if [ ${#goodPaths[@]} != 0 ]; then
+	fileName="$(date +%y)-$(date +%m)-$(date +%d) $(date +%H).$(date +%M).$(date +%S).tgz";
+	filePath="$TRASH""$fileName";
+	echo "Placing in "$filePath"";
+	#Tar all goodPaths and remove - do not remove if tar fails
+  tar -czPf "$filePath" ${goodPaths[@]} && rm -r ${goodPaths[@]};
+fi

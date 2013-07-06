@@ -1,0 +1,35 @@
+// fileIoTokens.java - Reading diskfile, parsing by tokens
+// Demonstrates:	StreamTokenizer, InputStreamReader, fileInputStream
+//
+// 3/04 
+//
+// NOTES:  Assumes tokens come in 3s.  That is, if it finds the first token,
+// it assumes 2 more, and so on.
+//
+
+import java.io.*;
+import java.util.*;
+
+public class fileIoTokens
+{
+	public static void main(String argv[]) throws IOException
+	{
+		FileInputStream stream = new FileInputStream(argv[0]);
+		InputStreamReader reader = new InputStreamReader(stream);
+		StreamTokenizer tokens = new StreamTokenizer(reader);
+
+		while( tokens.nextToken() != tokens.TT_EOF) // TT_EOF a system constant
+		{
+			int x = (int) tokens.nval;
+
+			tokens.nextToken();
+			int y = (int) tokens.nval;
+
+			tokens.nextToken();
+			int z = (int) tokens.nval;
+
+			System.out.println("read: " + x + " " + y + " " + z);
+		}
+	}
+}
+

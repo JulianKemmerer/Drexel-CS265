@@ -1,0 +1,111 @@
+Q1: 
+.bash_profile:
+When bash is invoked as an interactive login shell, or as a  non-interactive  shell with the --login option, it first reads and executes commands from the file /etc/profile, if that file exists.   After  reading that file, it looks for ~/.bash_profile, ~/.bash_login, and ~/.profile
+
+.bashrc:
+When  an  interactive  shell that is not a login shell is started, bash reads and executes commands from  /etc/bash.bashrc  and  ~/.bashrc
+
+Q2:
+File included with submission
+
+Q3:
+8.0K -rw-r--r-- 1 jvk27 jvk27 7.9K 2011-09-25 22:10 funny
+4.0K -rwxr-xr-x 1 jvk27 jvk27  221 2011-09-25 22:11 hello.bash*
+
+Q4:
+User: read write
+Group: read
+World: read
+
+Q5:
+User: read write execute
+Group: read execute
+World: read execute
+
+Q6:
+Yes
+
+Q7:
+Yes
+
+Q8:
+No
+
+Q9:
+chmod 700 hello.bash
+chmod 755 hello.bash
+
+Q10:
+'readyonly' option is set
+The file was not able to be written.
+
+Q11:
+ls *:
+4.0K annoy           8.0K funny           4.0K regexp-input
+4.0K annoy.cc        4.0K hello.bash*     4.0K sample.html
+4.0K bug.c           4.0K itemList        4.0K streams.bash*
+8.0K chmod_lab.orig  4.0K itemList-2cols  4.0K TelecomTruths
+4.0K du.out             0 lab1            8.0K tormentTelemarketers
+4.0K err.log         4.0K lateExcuses     4.0K UnitTestingPhase
+4.0K errLog          4.0K Makefile         28K vi_lab
+4.0K example          12K moreUnix.html    36K vi_lab.new
+4.0K example2        4.0K output             0 vim_tutor
+
+ls: cannot open directory Grade: Permission denied
+ls: cannot open directory tmp: Permission denied
+
+ls a*:
+4.0K annoy  4.0K annoy.cc
+
+ls *m*:
+8.0K chmod_lab.orig  4.0K itemList-2cols  4.0K TelecomTruths
+4.0K example          12K moreUnix.html   8.0K tormentTelemarketers
+4.0K example2        4.0K sample.html        0 vim_tutor
+4.0K itemList        4.0K streams.bash*
+
+ls: cannot open directory tmp: Permission denied
+
+ls anno?:
+4.0K annoy
+
+ls annoy?:
+ls: cannot access annoy?: No such file or directory
+
+Q12:
+vi attempted to open two files "a" and "space"
+
+Q13:
+a. -bash: b?: No such file or directory
+b. Is a < b?
+c. $USER is jvk27
+d. \$USER is $USER
+e. Today is Sun Sep 25 22:39:06 EDT 2011
+f. Today is Sun Sep 25 22:39:20 EDT 2011
+g. Today is `date`
+h. 
+Files that start w/e:
+4.0K err.log
+4.0K errLog
+4.0K example
+4.0K example2
+
+Q14: the -n flag sorts the file numerically
+
+Q15: sort itemList-2cols -n -r | head -8
+
+Q16. A .tar.gz file of the same name
+
+Q17. The file returned to a to being *.tar
+
+Q18. No files mention "Vacation"
+
+Q19. cd `find /home/jvk27 -name "Week1"
+
+
+
+
+ 
+
+
+
+

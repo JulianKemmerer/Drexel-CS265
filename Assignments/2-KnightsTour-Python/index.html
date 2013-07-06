@@ -1,0 +1,129 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+  <meta name="Author" content="Kurt Schmidt">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Assignment">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='../../images/drexel.gif'></link>
+	<script language="JavaScript" src="../../courseInfo.js"></script>
+	<script language="JavaScript" src="../../../Scripts/courseFormat.js"></script>
+  <title> Assignment -- Knight's Tour (Python) </title>
+</head>
+
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#FF0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1> Simulate the Knight's Tour </h1>
+
+<h2> Introduction </h2>
+
+<p> This assignment will give you practice with Python, data structures, and
+design. </p>
+
+<hr>
+<h2> The Assignment </h2>
+
+<p> You will write a Python program that attempts to solve the Knight's Tour
+for a given board by brute-force methods.  The Knight's Tour is an attempt
+to move the knight on a board, such that each space is visited exactly once.
+See the Web for more information. </p>
+
+<p> Your program will read 3 arguments: rows, columns, attempts .  The first
+2 arguments are the size of the board, rows x columns.  The last argument is
+the number of attempts to make. </p>
+
+<p> The knight will start at (1, 1).  Look around, see what moves are
+available, and randomly choose one (note, that is <strong>not</strong> the
+same as randomly choosing a move, and then seeing if it's legal).  If you
+have no more moves (and you haven't covered the board), then the knight
+didn't make it. </p>
+
+<p> You then continue with a fresh attempt, starting at (1, 1), until the
+knight succeeds, or you've used up the number of attempts.  At the end,
+whichever the outcome, you will print a history of the knight's last
+attempt, w/a "success" or "failure" message.  E.g., given a 3x3 board,
+output: </p>
+
+<div><code>
+<pre>FAIL:
+ 1  6  3 
+ 4  x  8 
+ 7  2  5</pre>
+</code></div>
+
+
+<hr>
+<h3> Your code </h3>
+
+<p> You'll need some smart way to store the moves you made on the board.
+</p>
+
+<hr>
+<h3> Output </h3>
+
+<p> The history of the last attempt, as described above. </p>
+
+<hr>
+<h2> Submission </h2>
+
+<p> You can get some practise writing makefiles, and referencing environment
+variables.  When I run your stuff, I will fill in 3 variables:
+<code>KNIGHT_ROWS KNIGHT_COLS KNIGHT_ATTS</code> .  Do <strong>not</strong>
+define these variables in your makefile.  The rule that runs your code might
+look something like: </p>
+
+<div><code> python yourfile $$KNIGHT_ROWS $$KNIGHT_COLS $$KNIGHT_ATTS
+</code></div>
+
+<p> Note the 2 <code>$$</code> .  To test your code you can add the vars to
+your environment (don't forget to export them), or use the following form,
+which only affects the subshell's environment: </p>
+
+<div><code>
+KNIGHT_ROWS=3 KNIGHT_COLS='8' KNIGHT_ATTS='40' make run
+</code></div>
+
+<p> Or, create other test targets in your makefile that hardcode inputs for
+you. </p>
+
+<p> Submit the following files: </p>
+
+<ul>
+	<li> <tt><b>makefile</b></tt> &mdash; with the following targets (at a
+		minimum):
+		<ul>
+			<li> <tt><b>view</b></tt> &ndash; display <em>all</em> of your source
+				code, using the pager <code>less</code> </li>
+			<li> <tt><b>run</b></tt> &ndash; runs your program, pulling the
+				arguments from the environment, as described above.
+				<p> Make sure you turn echoing off, so <code>make</code> doesn't
+				echo the command back to me. </p>
+			</li>
+			<li> <tt><b>clean</b></tt> &ndash; Removes any intermediate files (in
+			this case, things w/a <code>pyc</code> extension) </li>
+		</ul>
+	</li>
+	<li> Any <strong>source</strong> files.  <tt>.pyc</tt> files will be
+		deleted before I start, so, must be built from source. </li>
+	<li> <tt><b>README</b></tt> <i>optional</i> - anything you want to say to
+		me before I grade. </li>
+</ul>
+
+<b>Please note</b>  You will use the filenames as listed here, and submit
+them all to the proper assignment.  If this is <b>not</b> clear, then see me
+in class.  If I get programs submitted to the wrong directories, I will be
+irate, which may, in some subconscious way, affect your grades.
+Adversely.</font>
+
+</body>
+</html>

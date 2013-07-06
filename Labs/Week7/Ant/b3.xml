@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Feb '06
+
+	Mandrake Linux 10.2
+	Ant
+
+	As noted below, this may be a little silly, and should probably be done w/
+	filesets, but motivated by stuff at:
+		http://blog.ideoplex.com/software/java/ (though the people there
+		probably wouldnt' want to be associated w/this file)
+-->
+
+<project default="compile">
+	<description>
+		A couple targets, one depends on the other, silly really, since javac
+		will do this for us.
+	</description>
+
+  <target name="compile" depends='foo,bar'/>
+	
+	<!-- note that this is silly, since, if foo needs bar, javac will compile
+		it for us -->
+  <target name="foo" depends='bar'>
+    <javac srcdir='./' includes='foo.java'/>
+  </target>
+
+  <target name="bar">
+    <javac srcdir='./' includes='bar.java'/>
+  </target>
+
+  <target name="clean">
+    <delete>
+			<fileset dir="./">
+				<include name='*.class'/>
+			</fileset>
+		</delete>
+  </target>
+</project>
+

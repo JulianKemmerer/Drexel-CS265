@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="Content-Language" content="en-us">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Expires" content="no-expire">
+	<meta name="Author" content="Vera Zaychik & Kurt Schmidt">
+	<meta name="Publisher" content="Drexel University">
+	<meta name="Copyright" content="">
+	<meta name="Keywords" content="Programming Techniques Unix">
+	<meta name="Description"
+		content="Lab for CS265 - Adv. Programming Techniques">
+	<meta name="Pagetype" content="Lab">
+	<meta name="Audience" content="All">
+	<link rel='shortcut icon' type='image/gif'
+		href='http://www.cs.drexel.edu/~kschmidt/images/drexel.gif'></link>
+	<script language="JavaScript" src="../../courseInfo.js"></script>
+	<script language="JavaScript" src="../../Scripts/courseFormat.js"></script>
+	<title>Lab - Python</title>
+</head>
+
+<body text="#330099" link="#000066" vlink="#000066" alink="#ff0000"
+	background="../../../images/blueTexture.jpeg">
+
+<h1>Lab - Python</h1>
+
+<hr>
+<h2>Python - Intro</h2>
+
+<ul>
+<h3>Useful links:</h3>
+<ul>
+	<li><a target='265' href=
+		'http://www.cs.drexel.edu/~jrb562/CS260/python/examples/starter_kit.html'>
+	http://www.cs.drexel.edu/~jrb562/CS260/python/examples/starter_kit.html</a>
+	</li>
+	<li><a target='265'
+		href='http://www.python.org'>www.python.org</a></li>
+</ul>
+
+<hr>
+<h3>To do</h3>
+<ul>
+	<li>Make some appropriate subdirectory for this lab and go there</li>
+	<li>Look over the Python programs in
+	~kschmidt/public_html/CS265/Labs/Python</li>
+
+	<table border='1'>
+		<tr><td colspan='2'><center><b>Simple First Programs</b></center></td></tr>
+		<tr>
+			<td><tt>strings.py</tt></td>
+			<td>Working w/strings</tt></td>
+		</tr>
+		<tr>
+			<td><tt>args.py</tt></td>
+			<td>Looking at command-line arguments</tt></td>
+		</tr>
+		<tr>
+			<td><tt>input.py</tt></td>
+			<td>Simple console input</td>
+		</tr>
+		<tr>
+			<td><tt>readFile.py</tt></td>
+			<td>Reading a file by chars, and by lines</td>
+		</tr>
+		<tr>
+			<td><tt>stdin.py</tt></td>
+			<td>Reading stdin as you would any other file</td>
+		</tr>
+	</table>
+
+</ul>
+
+<hr>
+<h3>Problems:</h3>
+
+<p><font size='+1'>Q1</font>  Look at the <tt><b>students</b></tt> input
+file in the directory.  Write a Python program that, for <i>each</i>
+student, computes the average of all of the scores for that student, prints
+2 columns:  the name, followed by the average.  See <tt>str.strip</tt> and
+<tt>str.split</tt> to help you.  The name of the file will be read as the
+first command-line argument.  Submit a file called <tt><b>s1.py</b></tt></p>
+
+<p><font size='+1'>Q2</font>  Same thing, but the input file will be a CSV
+(see <tt><b>students.csv</b></tt> for an example).  Submit a file called
+<tt><b>s2.py</b></tt></p>
+
+<p><font size='+1'>Q3</font>  Look at the <tt><b>ids</b></tt> file.  You
+will read a file like this, break each record up into 2 fields; the id, and
+the name.  Look more closely at <tt>str.split</tt> to help you here.  You
+will store the entries in a dictionary, where ID is the key, and the name is
+the satellite data.  You will then output, in 2 columns, one entry per line,
+all the entries in your dictionary, sorted (numerically) by ID.
+<tt>dict.keys</tt> and <tt>list.sort</tt> should help you here.  The input
+filename will be the first command-line argument.  Submit a file called
+<tt><b>id.py</b></tt></p>
+
+<p><font size='+1'>Q4</font>  Modify <tt>id.py</tt> so that if it isn't
+given any arguments (filename on the cmd-line), it will read <tt>stdin<tt>,
+much like <tt><b>cat</b></tt>,<tt><b>grep</b></tt>, <tt><b>head</b></tt>,
+etc.  Submit a file called <tt><b>id2.py</b></tt></p>
+
+</ul>
+
+<hr>
+<h2>Python - Regular Expressions</h2>
+
+<ul>
+<h3>Useful links:</h3>
+<ul>
+	<li><a target='265' href=
+		'http://diveintopython.org/regular_expressions/index.html'>
+		Chptr 7 of <u>Dive Into Python</u>, by Mark Pilgrim</a>
+	</li>
+</ul>
+
+<hr>
+<h3>To do</h3>
+<ul>
+	<li>Look over the Python programs in
+		~kschmidt/public_html/CS265/Labs/Python</li>
+
+	<table border='1'>
+		<tr><td colspan='2'><center><b>Simple First Programs</b></center></td></tr>
+		<tr>
+			<td><tt>grep.py</tt></td>
+			<td>Regular expressions</tt></td>
+		</tr>
+		<tr>
+			<td><tt>parsePhoneNrs.py</tt></td>
+			<td>Regular expressions, grouping</tt></td>
+		</tr>
+	</table>
+</ul>
+
+<hr>
+<h3>Problems:</h3>
+
+<p><font size='+1'>Q5</font>  Modify <tt>parsePhoneNrs.py</tt> so that it
+also parses and displays extensions, if they exist, as in the following
+examples:
+
+	<blockquote><tt>
+		800-555-1212-300<br>
+		(212) 244-4480 x7
+	</tt></blockquote>
+
+<p>Those are the only forms you need to worry about.  An extension may have
+1-4 digits (in either form).  Call the file <tt><b>parsePhoneNrs.py</b></tt>
+and submit it along w/the lab.</p>
+
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- 
+	Kurt Schmidt
+	Feb '06
+
+	Mandrake Linux 10.2
+	Ant
+
+	This isn't bad.  Need to thank the people at:
+		http://blog.ideoplex.com/software/java/ (thanks, guys)
+
+	DEMONSTRATES: tag, project, description, target, javac, java, classpath,
+		arg, delete, fileset
+-->
+
+<project default="jar">
+	<description>
+		Compile, and make a jarfile.  Optionally, run it.
+		Please note, that "running" the jarfile requires a properly written
+			manifest file (here, man.mf)
+	</description>
+
+  <target name="run" depends='jar'>
+    <java jar='foo.jar' fork='true'>
+			<classpath path='./'/>
+			<arg value='an arg'/>
+			<arg line='2 args'/>
+			<arg path='../../index.html'/>
+		</java>
+  </target>
+
+  <target name="jar" depends='compile'>
+    <jar	destfile='./foo.jar'
+					manifest='man.mf'>
+			<fileset dir='./'>
+				<include name='*.class'/>
+			</fileset>
+		</jar>
+  </target>
+
+  <target name="compile">
+    <javac srcdir='./'/>
+  </target>
+
+  <target name="clean">
+    <delete>
+			<fileset dir="./">
+				<include name='*.class'/>
+			</fileset>
+		</delete>
+  </target>
+</project>

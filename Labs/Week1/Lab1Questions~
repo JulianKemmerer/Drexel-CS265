@@ -1,0 +1,9 @@
+Q1: 
+.bash_profile:
+When bash is invoked as an interactive login shell, or as a  non-interactive  shell with the --login option, it first reads and executes commands from the file /etc/profile, if that file exists.   After  reading that file, it looks for ~/.bash_profile, ~/.bash_login, and ~/.profile
+
+.bashrc:
+When  an  interactive  shell that is not a login shell is started, bash reads and executes commands from  /etc/bash.bashrc  and  ~/.bashrc
+
+
+
